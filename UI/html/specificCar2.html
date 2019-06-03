@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width">
+     <meta name="description" content="Auto Mart">
+     <meta name="keywords" content="Auto Mart">
+     <meta name="author" content="Raymond Gakwaya">
+   <title>Auto Mart</title>
+   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  </head>
+
+  <body style="background-image: none; background-color: rgb(233, 233, 233)">
+    <header>
+  <!-- Top navigation -->
+      <div class="topnav">
+        <div class = "logo">
+          <a href="home.html">Auto<span>Mart</span></a>
+      </div>
+      <div id="myNav" class="overlay">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <div class="overlay-content">
+            <a href="./home.html">Home</a>
+            <a href="./post.html">Post a car Ad</a>
+            <a href="./posted.html">Posted car ads</a>
+            <a href="./purchase.html">Purchase orders</a>
+            <a href="./unsold.html">Unsold Cars</a>
+            <a href="./signin.html">Logout</a>
+          </div>
+        </div>
+        <span class= "menu-bar" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+    <!-- Left-aligned links (default) -->
+        <div class="navigation">
+          <div class="topnav-left">
+            <a href="./home.html">Home</a>
+            <a href="./post.html">Post a car Ad</a>
+            <a href="./posted.html">Posted car ads</a>
+            <a href="./purchase.html">Purchase orders</a>
+            <a href="./unsold.html">Unsold Cars</a>
+          </div>
+    
+    <!-- Right-aligned links -->
+         <div class="topnav-right">
+           <a href="./signin.html">Logout</a>
+         </div>
+        </div>
+      </div>
+    </header>
+
+  <!-- Featured Cars -->
+  <section id="single-car">
+<div class="car-info">
+      <table class="details">
+        <tr>
+          <td><img src="../Assets/chevrolet.jpg" alt="chevrolet" style="position: relative; left: 80px;" class="car-image"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Owner:</td>
+          <td>Rwanda Car Market</td>
+        </tr>
+        <tr>
+          <td>State:</td>
+          <td>Used</td>
+        </tr>
+        <tr>
+          <td>Status:</td>
+          <td>Available</td>
+        </tr>
+        <tr>
+          <td>Price:</td>
+          <td>$ 25,200</td>
+        </tr>
+        <tr>
+          <td>Manufacturer:</td>
+          <td> <img src="../Assets/Chevrolet_logo.png" alt="Toyota" style="width: 70px;"></td>
+        </tr>
+        <tr>
+          <td>Model:</td>
+          <td>2019 Chevrolet Silverado</td>
+        </tr>
+        <tr>
+          <td>Body Type:</td>
+          <td>Double cab bakkie</td>
+        </tr>
+         <tr>
+          <td>Transmission gear:</td>
+          <td>Manual</td>
+        </tr>
+        <tr>
+          <td>
+            <button><a href="#">Purchase</a></button>
+            <button class="report-button"><a href="#">Report as fraudulent</a></button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <footer id="footer" style="color: black; padding-top: 170px">
+    <p>AutoMart, Andela Developer Challenge &copy; Bootcamp Cycle7</p>
+  </footer>
+  <script src="../js/script.js"></script>
+</body>
+</html>

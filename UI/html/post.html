@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width">
+     <meta name="description" content="Auto Mart">
+     <meta name="keywords" content="Auto Mart">
+     <meta name="author" content="Raymond Gakwaya">
+   <title>Auto Mart | post</title>
+   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  </head>
+
+  <body style="background-image: none; background-color: rgb(233, 233, 233)">
+    <header>
+  <!-- Top navigation -->
+      <div class="topnav">
+        <div class = "logo">
+          <a href="home.html">Auto<span>Mart</span></a>
+      </div>
+      <div id="myNav" class="overlay">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <div class="overlay-content">
+            <a href="./home.html">Home</a>
+            <a href="./post.html" class="active">Post a car Ad</a>
+            <a href="./posted.html">Posted car ads</a>
+            <a href="./purchase.html">Purchase orders</a>
+            <a href="./unsold.html">Unsold Cars</a>
+            <a href="./signin.html">Logout</a>
+          </div>
+        </div>
+        <span class= "menu-bar" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+    <!-- Left-aligned links (default) -->
+        <div class="navigation">
+          <div class="topnav-left">
+            <a href="./home.html">Home</a>
+            <a href="./post.html" class="active">Post a car Ad</a>
+            <a href="./posted.html">Posted car ads</a>
+            <a href="./purchase.html">Purchase orders</a>
+            <a href="./unsold.html">Unsold Cars</a>
+          </div>
+    
+    <!-- Right-aligned links -->
+         <div class="topnav-right">
+           <a href="./signin.html">Logout</a>
+         </div>
+        </div>
+      </div>
+    </header>
+
+  <!-- Featured Cars -->
+  <section>
+  <div id="container" class="container" style="width: 50%; position: absolute; left: 300px; top: 100px;">
+  <form class="post-form">
+    <div class="row">
+      <div class="title">
+        <label>Owner</label>
+      </div>
+      <div class="placeholder">
+        <input type="text" placeholder="Owner..">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="title">
+        <label>Manufacturer</label>
+      </div>
+      <div class="placeholder">
+        <input type="text" placeholder="Manufacturer..">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="title">
+        <label>State</label>
+      </div>
+      <div class="placeholder">
+        <select id="state">
+          <option value="new">New</option>
+          <option value="use">Used</option>
+        </select>
+      </div>
+    </div>
+
+      <div class="row">
+       <div class="title">
+        <label>Model</label>
+       </div>
+      <div class="placeholder">
+        <input type="text" placeholder="Model..">
+      </div>
+      </div>
+
+      <div class="row">
+       <div class="title">
+        <label>Body type</label>
+       </div>
+      <div class="placeholder">
+        <select id="body-type">
+          <option>Body type</option>
+          <option>Hatchback</option>
+          <option>Sedan</option>
+          <option>Crossover-USV</option>
+          <option>Single cab bakkie</option>
+          <option>Double cab bakkie</option>
+          <option>Multi purpose vehicle</option>
+          <option>Convertible</option>
+          <option>Extended cab bakkie</option>
+        </select>
+      </div>
+      </div>
+
+       <div class="row">
+       <div class="title">
+        <label>Price</label>
+       </div>
+      <div class="placeholder">
+        <input type="text" placeholder="Price.."><br><br>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="placeholder">
+        <form>
+         Upload a photo: <input type="file" multiple><br><br>
+        </form>
+      </div>
+      </div>
+
+    <div class="row">
+      <input type="submit" value="POST">
+    </div>
+  </form>
+</div>
+  </section>
+
+  <footer id="footer" style="color: black; padding-top: 170px">
+    <p>AutoMart, Andela Developer Challenge &copy; Bootcamp Cycle7</p>
+  </footer>
+  <script src="../js/script.js"></script>
+</body>
+</html>

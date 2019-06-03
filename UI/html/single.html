@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width">
+     <meta name="description" content="Auto Mart">
+     <meta name="keywords" content="Auto Mart">
+     <meta name="author" content="Raymond Gakwaya">
+   <title>Auto Mart</title>
+   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  </head>
+
+  <body style="background-image: none; background-color: rgb(233, 233, 233)">
+     <header>
+  <!-- Top navigation -->
+      <div class="topnav">
+        <div class = "logo">
+          <a href="home.html">Auto<span>Mart</span></a>
+      </div>
+
+      <!-- media querries nav -->
+      <div id="myNav" class="overlay">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <div class="overlay-content">
+            <a href="./home.html" class="active">All Cars</a>
+            <a href="ads.html">Posted car ads</a>
+            <a href="./signin.html">Logout</a>
+          </div>
+        </div>
+        <span class= "menu-bar" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+      <!-- normal nav -->
+        <div class="navigation">
+          <div class="topnav-left">
+            <a href="./admin.html">All Cars</a>
+            <a href="ads.html" class="active">Posted car ads</a>
+          </div>
+    
+    <!-- logout nav -->
+         <div class="topnav-right">
+           <a href="./signin.html">Logout</a>
+         </div>
+        </div>
+      </div>
+    </header>
+
+  <!-- Featured Cars -->
+  <section id="single-car">
+<div class="car-info">
+      <table class="details">
+         <tr>
+          <td><img src="../Assets/camery.png" alt="camery" style="position: relative; left: 80px;" class="car-image"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Owner:</td>
+          <td>Rwanda Car Market</td>
+        </tr>
+        <tr>
+          <td>State:</td>
+          <td>New</td>
+        </tr>
+        <tr>
+          <td>Status:</td>
+          <td>Available</td>
+        </tr>
+        <tr>
+          <td>Price:</td>
+          <td>$ 25,200</td>
+        </tr>
+        <tr>
+          <td>Manufacturer:</td>
+          <td> <img src="../Assets/toyota-logo.png" alt="Toyota" style="width: 50px;"></td>
+        </tr>
+        <tr>
+          <td>Model:</td>
+          <td>2019 Toyota Camry</td>
+        </tr>
+        <tr>
+          <td>Body Type:</td>
+          <td>Sedan</td>
+        </tr>
+         <tr>
+          <td>Transmission gear:</td>
+          <td>Automatic</td>
+        </tr>
+          <td>
+            <button><a href="./ads.html">Accept</button>
+            <button class="report-button"><a href="./ads.html">Decline</a></button>
+          </td>
+          <td class="mark-buttons">
+            <button class="report-button"><a href="./ads.html">Delete</a></button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <footer id="footer" style="color: black; margin: 0">
+    <p>AutoMart, Andela Developer Challenge &copy; Bootcamp Cycle7</p>
+  </footer>
+  <script src="../js/script.js"></script>
+</body>
+</html>

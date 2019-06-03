@@ -1,0 +1,768 @@
+/* body */
+body{
+    background-image: linear-gradient(rgba(3, 1, 32, 0.5), rgba(0,0,0,0.5),rgba(3, 1, 32, 0.5), rgba(0,0,0,0.5)), url(../Assets/main-hero-desktop.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    padding: 0;
+    margin: 0;
+  }
+
+/* header */
+.logo{
+    position: relative;
+    margin-top: 1%;
+    padding-left: 10px;
+    font-size: 170%;
+    padding-bottom: 5px;
+}
+.logo a{
+    float: left;
+    font-size: 100%;
+    text-decoration: none;
+    color: white;
+}
+.logo a span{
+    font-size: 150%;
+    color: green;
+}
+.logo a img{
+    width: 6%;
+    height: auto;
+}
+.home-buttons{
+    padding-right: 3px;
+    list-style: none;
+    margin-top: -20px;
+    float: right;
+}
+.home-buttons li{
+    display: inline-block;
+    margin-top: 7%;
+}
+.home-buttons li a{
+    color: white;
+    text-decoration: none;
+    margin-top: 0;
+    margin-right: 3%;
+    padding: 5px 20px;
+    font-family: "Roboto", sans-serif;   
+    font-size: 100%;
+}
+.home-buttons li a:hover{
+    color: rgb(11, 180, 11);
+    font-size: 100%;
+}
+.menu-icon img{
+    display: none;
+    width: 10px;
+    height: 10px;
+}
+/* section */
+#body{
+    margin: 30px;
+    height: 235px;
+}
+
+.welcome {
+    padding-top: 2%;
+    color: aliceblue;
+    font-size: 170%;
+    margin: 4%;
+}
+
+.welcome h1{
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 15px;
+    font-size: 200%;
+    text-align: center;
+}
+.welcome a{
+    padding: 1%;
+    background-color: rgb(6, 6, 65);
+    color: white;
+    text-transform: uppercase;
+    font-size: 60%;
+    letter-spacing: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+}
+.welcome a:hover{
+    color: white;
+    background-color: rgb(2, 42, 2);
+}
+/* signup-page */
+body.image{
+    background-image: linear-gradient(rgba(3, 1, 32, 0.5), rgba(0,0,0,0.5)), url(../Assets/range-rover-lrx-2010-img_1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.signup-page{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
+.info{
+    padding-right: 20%;
+    columns: white;
+    width: 70%;
+}
+.info h3{
+    font-size: 250%;
+    color: #FFFFFF;
+}
+.info h4{
+    font-size: 200%;
+    color: lightgray;
+}
+  .form {
+    padding-right: 30px;
+    width: 30%;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    flex-basis: 50%;
+  }
+  .form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 13px;
+    padding: 13px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background:  rgb(17, 17, 17);
+    
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: rgb(231, 225, 225);
+    font-size: 14px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .form button a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.form button:hover{
+    background: rgb(1, 47, 1);
+    color: #FFFFFF;
+}
+.form button:active,.form button:focus {
+  background: rgb(17, 17, 17);
+  color: #FFFFFF;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 100%;
+}
+.form .message a {
+  color: #b3b3b3;
+  text-decoration: none;
+}
+
+.form .message a:hover{
+    color: rgb(255, 255, 255);
+  }
+  /* signin page */
+  .signin-page{
+    padding-top: 10%;
+}
+#form{
+  position: relative;
+  background: rgba(1, 6, 51, 0.479);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+}
+/* home */  
+.topnav {
+    overflow: hidden;
+    background-color: rgb(36, 88, 136);
+    border-bottom: green 2px solid;
+  }
+  
+  .topnav a {
+    font-family: Arial, Helvetica, sans-serif;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .topnav a.active {
+    color: rgb(18, 179, 18);
+  }
+  .topnav-right {
+    float: right;
+  }
+  .nav{
+    display: block;
+  }
+  .nav a{
+      margin-left: 60px;
+  }
+  .navigation a:hover{
+    color: rgb(18, 179, 18);
+  }
+  .menu-bar{
+   
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: rgb(255, 255, 255);
+    display: none;
+    font-size: 200%;
+  }
+.side-bar{
+  display: none;
+}
+.side-nav{
+  display: none;
+}
+
+.side-menu li{
+  list-style: none;
+  margin: 5px 20px auto -30px;
+  padding: 3px;
+}
+.side-menu li a{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  padding: 8px;
+}
+.side-menu li a:hover{
+  border: 1px green solid;
+}
+.overlay {
+  display: block;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 2, 14, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content a{
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+.close{
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 2px;
+}
+.card{
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  width: 40%;
+  height: auto;
+  margin-top: 20px;
+}
+.card a{
+  text-decoration: none;
+  color: black;
+}
+.card p{
+  padding-left: 10px;
+}
+  .card, .container h2{
+    margin-left: 10%;
+  }
+  .section{
+    display: flex;
+    padding-right: 50px;
+  }
+  .featured-cars{
+    float: right;
+    padding-top: 15%;
+    padding-right: 10px;
+  }
+  .old-cars{
+    float: left;
+    margin-left: 10%;
+    display: flex;
+  }
+  .old-cars-container{
+    padding-top: 10px;
+  }
+  .old-cars-container a{
+    text-decoration: none;
+    color: black;
+  }
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* specific car */
+table {
+    margin-left: 10%;
+    padding: 0;
+    margin-top: 15px;
+    position: relative;
+    bottom: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 80%;
+    background-color: rgb(255, 255, 255);
+  }
+  #table{
+      width: 100%;
+  }
+  th, td {
+  text-align: left;
+  padding: 16px;
+}
+  .fa-check {
+    color: green;
+  }
+  .unverified{
+      font-weight: bold;
+  }
+  tr{
+    border-bottom: 1px solid #ddd;
+  }
+   .table tr:hover{
+    background-color: #f1f1f1f6;
+  }
+  tr.table-heading{
+      background-color: #f1f1f1;
+  }
+  .details{
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.76);
+    margin-left: 21%;
+    margin-top: 5%;
+    border: #f1f1f1f6;
+    border-radius: 1%;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  .details td{
+    text-align: left;
+    font-size: 85%;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+  }
+  .balance{
+    color: red;
+  }
+  tr.lines{
+    border-bottom: none;
+    color: rgb(0, 0, 0);
+    background-color: rgba(5, 3, 107, 0.15);
+  }
+  tr.no-lines{
+    color: rgb(0, 0, 0);
+    background-color: rgba(4, 6, 107, 0.15);
+  }
+  td button{
+    padding: 5px 5px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px #999;
+    margin-right: 7px;
+  }
+  td button:hover{
+    background-color: #037c07;
+  }
+  td button a{
+    text-decoration: none;
+    color: white;
+  }
+  .report-button{
+    background-color: rgba(189, 11, 11, 0.863);
+  }
+  .report-button:hover{
+    background-color: #aa0000;
+  }
+
+  /* posted ads */
+  #sold-car1 .fa-check-square{
+    position: absolute;
+    left: 418px;
+    font-size: 30px;
+    color: #037c07;
+  }
+  #sold-car2 .fa-check-square{
+    position: absolute;
+    left: 805px;
+    font-size: 30px;
+    color: #037c07;
+  }
+  #sold-car3 .fa-check-square{
+    position: absolute;
+    left: 1153px;
+    font-size: 30px;
+    color: #037c07;
+  }
+  /* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+  
+  /* post and ad */
+  /* Style inputs, select elements and textareas */
+input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Style the container */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.title {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.placeholder{
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* unsold */
+/* Add a light grey background on mouse-over */
+.btn:hover {
+  background-color: #ddd;
+}
+
+/* Add a dark background to the active button */
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+#new-cars{
+  display: none;
+}
+#old-cars{
+  display: none;
+}
+#newBtn{
+  display: none;
+}
+#usedBtn{
+  display: none;
+}
+
+/* puchase */
+#buttons{
+  display: flex;
+  float: right;
+}
+#buttons .row{
+  padding-right: 5px;
+}
+td a{
+  text-decoration: none;
+  color: black;
+}
+.accepted a{
+  color: #037c07;
+}
+.rejected a{
+  color: red;
+}
+#order{
+  background-color: rgb(194, 192, 192);
+}
+
+/* admin */
+.sold-color{
+  color: #4CAF50;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.available-color{
+  color: rgba(255, 123, 0, 0.952);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* footer */
+#footer{
+  margin-top: 24.5%;
+    color: aliceblue;
+    text-align: center;
+}
+
+/* querries */
+@media screen and (max-width: 760px) {
+    body{
+        background-repeat: no-repeat;
+        background-size: 400%;
+        background-position: center;
+        padding: 0;
+        margin: 0;
+      }
+    h1, h3{
+        font-size: 50%;
+        margin-left: -30px;
+    }
+    h2, h4{
+        font-size: 90%;
+    }
+    p{
+        font-size: 80%;
+    }
+    .logo{
+        font-size: 100%;
+    }
+    .menu-bar{
+      display: block;
+    }
+    .side-bar{
+      display: none;
+      width: 20%;
+      position: absolute;
+      top: 4px;
+      right: 12px;
+      background-color: rgba(10, 50, 102, 0.198);
+    }
+    .side-nav{
+      width: auto;
+      position: absolute;
+      top: 4px;
+      right: 12px;
+      background-color: rgba(10, 50, 102, 0.198);
+    }
+    .welcome a{
+        letter-spacing: 2px;
+        margin-bottom: 10%;
+    }
+    .home-buttons{
+      display: none;
+    }
+    .home-buttons li{
+    margin-top: 10%;
+}
+.home-buttons li a{
+    color: rgb(255, 255, 255);
+}
+.welcome h1{
+    padding-top: 20px;
+}
+
+/* signup page */
+.signup-page{
+    display: inline-block;
+    width: 87%;
+}
+.form {
+    padding-right: none;
+    width: 80%;
+    margin: 0 auto 100px;
+    text-align: center;
+  }
+  body.image{
+    background-repeat: no-repeat;
+    background-size: 610%;
+    background-position: center;
+    font-size: 10px;
+}
+
+ /* signin page */
+ .signin-page{
+    padding-top: 20%;
+}
+/* home */
+.overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+  .old-cars-container{
+    width: 30%;
+    
+  }
+.navigation{
+  display: none;
+}
+
+/* specific car */
+.car-image{
+  width: 100%;
+  margin-left: -33px;
+}
+.details{
+  width: 100%;
+  margin: 0;
+}
+/* posted car ads */
+#sold-car1 .fa-check-square{
+  display: none;
+  font-size: 15px;
+  position: absolute;
+  left: 100px;
+}
+#sold-car2 .fa-check-square{
+  display: none;
+  font-size: 15px;
+  position: absolute;
+  left: 184px;
+}
+#sold-car3 .fa-check-square{
+  display: none;
+  font-size: 15px;
+  position: absolute;
+  left: 261px;
+}
+.old-cars-container{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.old-cars-container button{
+  margin-left: -120px;
+  width: 150%;
+}
+
+/* post an ad */
+#container{
+  margin-left: -200px;
+  width: 130%;
+}
+#container .container{
+  position: absolute;
+  right: 0;
+  left: 2px;
+  width: 130%;
+}
+.placeholder{
+  float: none;
+  width: 100%;
+  margin: none;
+  padding: none;
+}
+.title {
+  float: none;
+  width: 100%;
+  margin: none;
+  padding: none;
+}
+
+
+/* footer */
+    footer{
+        padding-top: 35%;
+    }
+    .footer{
+      display: none;
+    }
+    #footer{
+      display: none;
+    }
+}
