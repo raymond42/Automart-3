@@ -1,10 +1,10 @@
 {
-  "name": "auto-mart",
-  "version": "1.0.0",
+  "name": "automart-3",
+  "version": "2.0.0",
   "description": "Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers.",
   "main": "server.js",
   "directories": {
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 10000 --exit test/*js || true"
+    "test": "test"
   },
   "scripts": {
     "start": "nodemon --exec babel-node ./server/server.js",
@@ -25,7 +25,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.2"
+    "eslint-plugin-import": "^2.17.3"
   },
   "dependencies": {
     "@babel/cli": "^7.4.4",
