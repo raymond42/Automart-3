@@ -9,7 +9,9 @@
   "scripts": {
     "start": "nodemon --exec babel-node ./server/server.js",
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 10000 --exit test/*js || true",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "createTables": "NODE_ENV=development node --require @babel/register ./server/models/tables.js",
+    "dropTables": "NODE_ENV=development node --require @babel/register ./server/models/dropTables.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +47,7 @@
     "moment": "^2.24.0",
     "nodemon": "^1.19.0",
     "nyc": "^14.1.1",
+    "pg": "^7.11.0",
     "swagger-node-express": "^2.1.3",
     "swagger-ui-express": "^4.0.4"
   }
