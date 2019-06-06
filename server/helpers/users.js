@@ -7,11 +7,11 @@ const validateUserSignup = {
   validation(newUser) {
     const newUserSchema = {
       email: Joi.string().email().trim().required(),
-      firstName: Joi.string().min(3).required(),
-      lastName: Joi.string().min(3).required(),
+      first_name: Joi.string().min(3).required(),
+      last_name: Joi.string().min(3).required(),
       password: Joi.string().min(6).max(12).required(),
       address: Joi.string().required(),
-      isAdmin: Joi.boolean().required(),
+      is_admin: Joi.boolean(),
     };
     return Joi.validate(newUser, newUserSchema);
   },
