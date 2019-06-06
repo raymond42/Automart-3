@@ -53,7 +53,7 @@ Auto Mart,  can sell their cars or buy from trusted dealerships or private selle
 ```
  *Express* (used for building fast APIs)
  ```
-### DATABASE
+### Database
 ```
  *Postgres*
  ```
