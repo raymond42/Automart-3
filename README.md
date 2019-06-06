@@ -1,4 +1,4 @@
-# AutoMart
+# AutoMart 3
 [![Build Status](https://travis-ci.com/raymond42/Automart-3.svg?branch=develop)](https://travis-ci.com/raymond42/Automart-3) [![Coverage Status](https://coveralls.io/repos/github/raymond42/Auto-Mart/badge.svg?branch=ch-readme-%23166241286)](https://coveralls.io/github/raymond42/Auto-Mart?branch=ch-readme-%23166241286) [![Maintainability](https://api.codeclimate.com/v1/badges/32f5c0be6db282c90ecf/maintainability)](https://codeclimate.com/github/raymond42/Auto-Mart/maintainability)
 
 Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With
