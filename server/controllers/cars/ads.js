@@ -72,8 +72,10 @@ const Ads = async (req, res) => {
     });
     return;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
+    res.status(500).json({
+      status: 500,
+      error: 'server error',
+    });
   }
 };
 
