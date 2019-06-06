@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node ./server/server.js",
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 10000 --exit test/*js || true",
+    "start": "NODE_ENV=development nodemon --exec babel-node ./server/server.js",
+    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 10000 --exit test/signup.js || true",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "createTables": "NODE_ENV=development node --require @babel/register ./server/models/tables.js",
     "dropTables": "NODE_ENV=development node --require @babel/register ./server/models/dropTables.js"
