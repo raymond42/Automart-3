@@ -99,13 +99,17 @@ The installation of this application is fairly straightforward, After cloning th
 
 It will install the node_modules which will help you run the project on your local machine.
 
+## Create tables in the database
+```
+> npm run createTables
+```
+## Delete or Drop table in the database
+```
+> npm run dropTables
+```
 ## Run the server
 ```
 > npm start
-```
-## Run the test
-```
-> npm test
 ```
 
 
