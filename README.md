@@ -18,7 +18,7 @@ Auto Mart,  can sell their cars or buy from trusted dealerships or private selle
 
 ---------------------------------------------------------------------
 
-## SERVER
+## SERVER & DATABASE
 
 ## API ENDPOINTS
 
@@ -52,6 +52,10 @@ Auto Mart,  can sell their cars or buy from trusted dealerships or private selle
 ### Framework
 ```
  *Express* (used for building fast APIs)
+ ```
+### DATABASE
+```
+ *Postgres*
  ```
 ### Testing Framework and assertion library
 ```
