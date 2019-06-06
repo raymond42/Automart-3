@@ -24,20 +24,20 @@ Auto Mart,  can sell their cars or buy from trusted dealerships or private selle
 
 | Ressource URL | Methods  | Description  |
 | ------- | --- | --- |
-| /api/v1/auth/signup| POST | Get the user to signup |
-| /api/v1/auth/login | POST | Get the user to login |
-| /api/v1/car | POST | Get the user to post a car sale advertisement |
-| /api/v1/order | POST | Get the user to make a purchase order |
-| /api/v1/cars/:id/ | PATCH | Get the user to update the price of his/her posted car sale ad |
-| /api/v1/order/:id | PATCH | Get the user to update the price or his/her purchase order |
-| /api/v1/car/:id | PATCH | Get user to mark his/her posted AD as sold  |
-| /api/v1/car/:id | GET | Get user to view a specific car |
-| /api/v1/cars/available | GET | Get user to User can view all unsold cars |
-| /api/v1/cars/available/range | GET | Get the user to view all unsold cars within a price range |
-| /api/v1/cars/posted | GET | Get the Aamin to view all posted ads whether sold or unsold |
-| /api/v1/cars/available/used | GET | Get the user to view all used unsold cars |
-| /api/v1/cars/available/new | GET | Get the user to view all new unsold cars |
-| /api/v1/car/:id | DELETE | Get the admin to delete a posted AD record |
+| /api/v2/auth/signup| POST | Get the user to signup |
+| /api/v2/auth/login | POST | Get the user to login |
+| /api/v2/car | POST | Get the user to post a car sale advertisement |
+| /api/v2/order | POST | Get the user to make a purchase order |
+| /api/v2/cars/:id/ | PATCH | Get the user to update the price of his/her posted car sale ad |
+| /api/v2/order/:id | PATCH | Get the user to update the price or his/her purchase order |
+| /api/v2/car/:id | PATCH | Get user to mark his/her posted AD as sold  |
+| /api/v2/car/:id | GET | Get user to view a specific car |
+| /api/v2/cars/available | GET | Get user to User can view all unsold cars |
+| /api/v2/cars/available/range | GET | Get the user to view all unsold cars within a price range |
+| /api/v2/cars/posted | GET | Get the Aamin to view all posted ads whether sold or unsold |
+| /api/v2/cars/available/used | GET | Get the user to view all used unsold cars |
+| /api/v2/cars/available/new | GET | Get the user to view all new unsold cars |
+| /api/v2/car/:id | DELETE | Get the admin to delete a posted AD record |
 
 ## Used Tools
 
