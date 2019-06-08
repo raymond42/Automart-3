@@ -8,6 +8,7 @@ import updatePriceOrder from '../controllers/orders/updatePriceOrder';
 import markadsold from '../controllers/cars/markCar';
 import updatePriceCar from '../controllers/cars/updatePriceCar';
 import getCar from '../controllers/cars/specific';
+import getUnsoldCars from '../controllers/cars/unsold';
 
 const router = express.Router();
 
@@ -34,5 +35,8 @@ router.patch('/car/:id/price', auth, updatePriceCar);
 
 // get a specific car
 router.get('/car/:id', auth, getCar);
+
+// get available cars
+router.get('/car', auth, getUnsoldCars);
 
 export default router;
