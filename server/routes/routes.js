@@ -6,6 +6,7 @@ import auth from '../middleware/auth';
 import Order from '../controllers/orders/order';
 import updatePriceOrder from '../controllers/orders/updatePriceOrder';
 import markadsold from '../controllers/cars/markCar';
+import updatePriceCar from '../controllers/cars/updatePriceCar';
 
 const router = express.Router();
 
@@ -26,5 +27,8 @@ router.patch('/order/:id/price', auth, updatePriceOrder);
 
 // mark a posted car ad as sold
 router.patch('/car/:id/status', auth, markadsold);
+
+// update the price of a posted car ad
+router.patch('/car/:id/price', auth, updatePriceCar);
 
 export default router;
