@@ -9,6 +9,7 @@ import markadsold from '../controllers/cars/markCar';
 import updatePriceCar from '../controllers/cars/updatePriceCar';
 import getCar from '../controllers/cars/specific';
 import getUnsoldCars from '../controllers/cars/unsold';
+import getUnsoldCarsWithinPriceRange from '../controllers/cars/unsoldPriceRange';
 
 const router = express.Router();
 
@@ -38,5 +39,8 @@ router.get('/car/:id', auth, getCar);
 
 // get available cars
 router.get('/car', auth, getUnsoldCars);
+
+// get available cars within a price range
+router.get('/cars', auth, getUnsoldCarsWithinPriceRange);
 
 export default router;
