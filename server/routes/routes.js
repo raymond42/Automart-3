@@ -11,6 +11,7 @@ import getCar from '../controllers/cars/specific';
 import getUnsoldCars from '../controllers/cars/unsold';
 import getUnsoldCarsWithinPriceRange from '../controllers/cars/unsoldPriceRange';
 import deletePosted from '../controllers/cars/delete';
+import allposted from '../controllers/cars/allPosted';
 
 const router = express.Router();
 
@@ -46,5 +47,8 @@ router.get('/cars', auth, getUnsoldCarsWithinPriceRange);
 
 // delete a car post
 router.delete('/car/:id', auth, deletePosted);
+
+// get all cars
+router.get('/cars/all', auth, allposted);
 
 export default router;
