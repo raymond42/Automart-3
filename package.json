@@ -8,10 +8,14 @@
   },
   "scripts": {
     "start": "NODE_ENV=development nodemon --exec babel-node ./server/server.js",
+    "test_db": "NODE_ENV=test npm run droptablesTests && NODE_ENV=test npm run createTablesTests && NODE_ENV=test npm run admin && NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --timeout 5000  --require @babel/register test/*js --exit",
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 10000 --exit test/signup.js || true",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "createTablesTests": "NODE_ENV=test node --require @babel/register ./server/models/tables.js",
+    "droptablesTests": "NODE_ENV=test node --require @babel/register ./server/models/dropTables.js",
     "createTables": "NODE_ENV=development node --require @babel/register ./server/models/tables.js",
-    "dropTables": "NODE_ENV=development node --require @babel/register ./server/models/dropTables.js"
+    "dropTables": "NODE_ENV=development node --require @babel/register ./server/models/dropTables.js",
+    "admin": "node --require @babel/register ./server/models/admin.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +29,7 @@
   "homepage": "https://github.com/raymond42/Auto-Mart#readme",
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "babel-polyfill": "^6.26.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3"
