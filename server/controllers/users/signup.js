@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
 import jwt from 'jsonwebtoken';
@@ -5,6 +6,7 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import pool from '../../config/db';
 import validateUserSignup from '../../helpers/users';
+import '@babel/polyfill';
 
 
 dotenv.config();
