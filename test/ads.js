@@ -10,7 +10,7 @@ chai.should();
 dotenv.config();
 
 describe('Post a car a sale ad', () => {
-  it('user should be able to signup', (done) => {
+  it('first user should signup', (done) => {
     const user = {
       email: 'raymond@gmail.com',
       first_name: 'Raymond',
