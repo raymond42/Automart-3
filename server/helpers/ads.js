@@ -4,8 +4,8 @@ const validateAd = {
 
   validation(newAd) {
     const newAdSchema = {
-      owner: Joi.number().required(),
-      email: Joi.string().email().required(),
+      // owner: Joi.number().required(),
+      // email: Joi.string().email().required(),
       manufacturer: Joi.string().required(),
       model: Joi.string().required(),
       price: Joi.number().required(),

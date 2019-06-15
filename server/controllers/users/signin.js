@@ -46,6 +46,7 @@ const signin = async (req, res) => {
     // if everything is correct
     // generate token
     const payload = {
+      id: user.rows[0].id,
       email: user.rows[0].email,
       first_name: user.rows[0].first_name,
       last_name: user.rows[0].last_name,
