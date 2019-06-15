@@ -9,25 +9,28 @@ chai.use(chaiHttp);
 chai.should();
 dotenv.config();
 
+
 describe('Post a car a sale ad', () => {
   it('user should be able to post a car sale ad', (done) => {
-    const user = {
-      email: 'chris@gmail.com',
+    const payload = {
+      id: 2,
+      email: 'raymond@gmail.com',
+      first_name: 'Raymond',
+      last_name: 'Gakwaya',
+      address: 'Rwanda',
+      is_admin: false,
     };
-    const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: '24hrs' });
-    const carAd = {
-      owner: 1,
-      email: 'chris@gmail.com',
-      manufacturer: 'Toyota',
-      model: '2019 Toyota camry',
-      price: 40000,
-      state: 'new',
-      status: 'available',
-    };
+    const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .post('/api/v1/car')
+      .post('/api/v2/car')
       .set('Authorization', token)
-      .send(carAd)
+      .send({
+        manufacturer: 'Toyota',
+        model: '2019 Toyota camry',
+        price: 40000,
+        state: 'new',
+        status: 'available',
+      })
       .end((err, res) => {
         res.should.have.status(201);
         res.should.be.an('object');
@@ -39,7 +42,7 @@ describe('Post a car a sale ad', () => {
 
   it('user should not be able to post a car sale ad when he/she is not authorized', (done) => {
     chai.request(app)
-      .post('/api/v1/car')
+      .post('/api/v2/car')
       .end((err, res) => {
         res.should.have.status(401);
         res.should.be.an('object');
@@ -63,14 +66,14 @@ describe('Post a car a sale ad', () => {
       status: 'available',
     };
     chai.request(app)
-      .post('/api/v1/car')
+      .post('/api/v2/car')
       .set('Authorization', token)
       .send(carAd)
       .end((err, res) => {
         res.should.have.status(404);
         res.should.be.an('object');
         res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error');
+        res.body.should.have.property('message');
         done();
       });
   });
@@ -89,7 +92,7 @@ describe('Post a car a sale ad', () => {
       status: 'available',
     };
     chai.request(app)
-      .post('/api/v1/car')
+      .post('/api/v2/car')
       .set('Authorization', token)
       .send(carAd)
       .end((err, res) => {
@@ -102,11 +105,11 @@ describe('Post a car a sale ad', () => {
   });
   it('user should not be able to post a car sale ad when there is a missing info', (done) => {
     const user = {
-      email: 'chris@gmail.com',
+      email: 'raymond@gmail.com',
     };
     const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: '15min' });
     chai.request(app)
-      .post('/api/v1/car')
+      .post('/api/v2/car')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(400);
@@ -118,11 +121,11 @@ describe('Post a car a sale ad', () => {
   });
   it('user should not be able to post a car sale ad when there is an empty info', (done) => {
     const user = {
-      email: 'chris@gmail.com',
+      email: 'raymond@gmail.com',
     };
     const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: '15min' });
     chai.request(app)
-      .post('/api/v1/car')
+      .post('/api/v2/car')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(400);
@@ -134,11 +137,11 @@ describe('Post a car a sale ad', () => {
   });
   it('user should not be able to post a car sale ad when there is a wrong input data type', (done) => {
     const user = {
-      email: 'chris@gmail.com',
+      email: 'raymond@gmail.com',
     };
     const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: '15min' });
     chai.request(app)
-      .post('/api/v1/car')
+      .post('/api/v2/car')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(400);
@@ -150,11 +153,11 @@ describe('Post a car a sale ad', () => {
   });
   it('user should not be able to post a car sale ad when he/she puts an invalid token', (done) => {
     const user = {
-      email: 'chris@gmail.com',
+      email: 'raymond@gmail.com',
     };
     const token = jwt.sign(user, 'SECRET', { expiresIn: '15min' });
     chai.request(app)
-      .post('/api/v1/car')
+      .post('/api/v2/car')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(401);

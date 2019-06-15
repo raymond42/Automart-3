@@ -8,8 +8,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=development npm run admin && NODE_ENV=development nodemon --exec babel-node ./server/server.js",
-    "test_db": "NODE_ENV=test npm run droptablesTests && NODE_ENV=test npm run createTablesTests && NODE_ENV=test npm run admin && NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --timeout 5000  --require @babel/register test/*js --exit",
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 10000 --exit test/signup.js || true",
+    "test": "NODE_ENV=test npm run droptablesTests && NODE_ENV=test npm run createTablesTests && NODE_ENV=test npm run admin && NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --timeout 5000  --require @babel/register test/*js --exit || true",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "createTablesTests": "NODE_ENV=test node --require @babel/register ./server/models/tables.js",
     "droptablesTests": "NODE_ENV=test node --require @babel/register ./server/models/dropTables.js",
