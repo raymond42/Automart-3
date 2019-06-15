@@ -35,7 +35,7 @@ const signup = async (req, res) => {
       return;
     }
 
-    const password = bcrypt.hashSync(req.body.password.trim(), 10);
+    const hash = bcrypt.hashSync(req.body.password.trim(), 10);
 
     if (req.body.email.trim().toLowerCase() !== 'admin@gmail.com') {
       user.admin = false;
@@ -44,41 +44,52 @@ const signup = async (req, res) => {
     }
 
     const is_admin = user.admin;
-    const {
-      first_name, last_name, email, address,
-    } = req.body;
-    const insertUser = 'INSERT INTO users(email, first_name, last_name, password, address, is_admin) VALUES($1, $2, $3, $4, $5, $6) RETURNING *';
-    const results = await pool.query(insertUser, [
-      email,
-      first_name,
-      last_name,
-      password,
-      address,
-      is_admin,
-    ]);
 
-    const payload = {
-      email,
-      first_name,
-      last_name,
-      password,
-      address,
+    const newUser = {
+      email: req.body.email.toLowerCase().trim(),
+      first_name: req.body.first_name.trim(),
+      last_name: req.body.last_name.trim(),
+      password: hash,
+      address: req.body.address.trim(),
       is_admin,
     };
-    const { id } = results.rows[0];
+    const insertUser = 'INSERT INTO users(email, first_name, last_name, password, address, is_admin) VALUES($1, $2, $3, $4, $5, $6) RETURNING *';
+    const results = await pool.query(insertUser,
+      [
+        newUser.email,
+        newUser.first_name,
+        newUser.last_name,
+        newUser.password,
+        newUser.address,
+        newUser.is_admin,
+      ]);
+
+
+    const payload = {
+      id: results.rows[0].id,
+      email: results.rows[0].email,
+      first_name: results.rows[0].first_name,
+      last_name: results.rows[0].last_name,
+      address: results.rows[0].address,
+      is_admin: results.rows[0].is_admin,
+    };
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24hrs' });
+
     res.status(201).json({
       status: 201,
       data: {
         token,
-        id,
-        first_name,
-        last_name,
-        email,
+        id: results.rows[0].id,
+        first_name: results.rows[0].first_name,
+        last_name: results.rows[0].last_name,
+        email: results.rows[0].email,
       },
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      status: 500,
+      message: 'Server error',
+    });
   }
 };
 
