@@ -35,7 +35,7 @@ const signup = async (req, res) => {
       return;
     }
 
-    const hash = bcrypt.hashSync(req.body.password.trim(), 10);
+    const password = bcrypt.hashSync(req.body.password.trim(), 10);
 
     if (req.body.email.trim().toLowerCase() !== 'admin@gmail.com') {
       user.admin = false;
@@ -44,52 +44,41 @@ const signup = async (req, res) => {
     }
 
     const is_admin = user.admin;
-
-    const newUser = {
-      email: req.body.email.toLowerCase().trim(),
-      first_name: req.body.first_name.trim(),
-      last_name: req.body.last_name.trim(),
-      password: hash,
-      address: req.body.address.trim(),
-      is_admin,
-    };
+    const {
+      first_name, last_name, email, address,
+    } = req.body;
     const insertUser = 'INSERT INTO users(email, first_name, last_name, password, address, is_admin) VALUES($1, $2, $3, $4, $5, $6) RETURNING *';
-    const results = await pool.query(insertUser,
-      [
-        newUser.email,
-        newUser.first_name,
-        newUser.last_name,
-        newUser.password,
-        newUser.address,
-        newUser.is_admin,
-      ]);
-
+    const results = await pool.query(insertUser, [
+      email,
+      first_name,
+      last_name,
+      password,
+      address,
+      is_admin,
+    ]);
 
     const payload = {
-      id: results.rows[0].id,
-      email: results.rows[0].email,
-      firstName: results.rows[0].firstName,
-      lastName: results.rows[0].lastName,
-      address: results.rows[0].address,
-      isAdmin: results.rows[0].isAdmin,
+      email,
+      first_name,
+      last_name,
+      password,
+      address,
+      is_admin,
     };
+    const { id } = results.rows[0];
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24hrs' });
-
     res.status(201).json({
       status: 201,
       data: {
         token,
-        id: results.rows[0].id,
-        firstName: results.rows[0].firstName,
-        lastName: results.rows[0].lastName,
-        email: results.rows[0].email,
+        id,
+        first_name,
+        last_name,
+        email,
       },
     });
   } catch (error) {
-    res.status(500).json({
-      status: 500,
-      message: 'Server error',
-    });
+    console.log(error);
   }
 };
 
