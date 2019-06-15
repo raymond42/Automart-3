@@ -20,7 +20,8 @@ const getUnsoldCarsWithinPriceRange = async (req, res) => {
     if (!range.rows[0]) {
       res.status(404).json({
         status: 404,
-        error: 'can not find car within that range',
+        message: 'can not find car within that range',
+        data: [],
       });
     } else {
       res.status(200).json({

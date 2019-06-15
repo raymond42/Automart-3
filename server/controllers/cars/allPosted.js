@@ -8,6 +8,7 @@ const allposted = async (req, res) => {
       res.status(404).json({
         status: 404,
         message: 'no car found',
+        data: [],
       });
     }
     res.status(200).json({

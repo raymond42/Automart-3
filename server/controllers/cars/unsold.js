@@ -9,7 +9,8 @@ const getUnsoldCars = async (req, res) => {
     if (!unsoldCars.rows[0]) {
       res.status(404).json({
         status: 404,
-        error: 'No available car found',
+        message: 'No available car found',
+        data: [],
       });
       return;
     }

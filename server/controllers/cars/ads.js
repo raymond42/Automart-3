@@ -30,7 +30,7 @@ const Ads = async (req, res) => {
     if (!ownerId.rows[0]) {
       res.status(404).json({
         status: 404,
-        error: 'owner not found',
+        message: 'owner not found',
       });
       return;
     }
