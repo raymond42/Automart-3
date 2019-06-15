@@ -16,7 +16,7 @@ describe('View all unsold cars within a price  range', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v1/cars?status=available&min_price=0&max_price=300000')
+      .get('/api/v2/cars?status=available&min_price=0&max_price=300000')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
@@ -33,7 +33,7 @@ describe('View all unsold cars within a price  range', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v1/cars?status=available&min_price=0&max_price=30')
+      .get('/api/v2/cars?status=available&min_price=0&max_price=30')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(404);
@@ -50,7 +50,7 @@ describe('View all unsold cars within a price  range', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v1/cars?status=available&min_price&max_price')
+      .get('/api/v2/cars?status=available&min_price&max_price')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(400);

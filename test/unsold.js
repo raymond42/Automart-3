@@ -16,7 +16,7 @@ describe('Viewing all unsold cars', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v1/car?status=available')
+      .get('/api/v2/car?status=available')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
@@ -33,7 +33,7 @@ describe('Viewing all unsold cars', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v1/car')
+      .get('/api/v2/car')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(400);

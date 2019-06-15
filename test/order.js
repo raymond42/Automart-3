@@ -21,7 +21,7 @@ describe('Purchasing order', () => {
       amount: 20000,
     };
     chai.request(app)
-      .post('/api/v1/order')
+      .post('/api/v2/order')
       .set('Authorization', token)
       .send(newOrder)
       .end((err, res) => {
@@ -35,7 +35,7 @@ describe('Purchasing order', () => {
 
   it('buyer should not be able to make a purchasing order when he/she is not authorized', (done) => {
     chai.request(app)
-      .post('/api/v1/order')
+      .post('/api/v2/order')
       .end((err, res) => {
         res.should.have.status(401);
         res.should.be.an('object');
@@ -55,7 +55,7 @@ describe('Purchasing order', () => {
       amount: 20000,
     };
     chai.request(app)
-      .post('/api/v1/order')
+      .post('/api/v2/order')
       .set('Authorization', token)
       .send(newOrder)
       .end((err, res) => {
@@ -77,7 +77,7 @@ describe('Purchasing order', () => {
       amount: 20000,
     };
     chai.request(app)
-      .post('/api/v1/order')
+      .post('/api/v2/order')
       .set('Authorization', token)
       .send(newOrder)
       .end((err, res) => {
@@ -94,7 +94,7 @@ describe('Purchasing order', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .post('/api/v1/order')
+      .post('/api/v2/order')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(400);
@@ -116,7 +116,7 @@ describe('Purchasing order', () => {
       amount: 'two',
     };
     chai.request(app)
-      .post('/api/v1/order')
+      .post('/api/v2/order')
       .set('Authorization', token)
       .send(newOrder)
       .end((err, res) => {
