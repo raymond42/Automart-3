@@ -33,7 +33,7 @@ Auto Mart,  can sell their cars or buy from trusted dealerships or private selle
 | /api/v2/car/:id | PATCH | Get user to mark his/her posted AD as sold  |
 | /api/v2/car/:id | GET | Get user to view a specific car |
 | /api/v2/cars/available | GET | Get user to User can view all unsold cars |
-| /api/v2/cars/available/range | GET | Get the user to view all unsold cars within a price range |
+| /api/v2/car?status=available&min_price=XXXValue&max_price=XXXValue | GET | Get the user to view all unsold cars within a price range |
 | /api/v2/cars/posted | GET | Get the Aamin to view all posted ads whether sold or unsold |
 | /api/v2/cars/all?status=available&state=used | GET | Get the user to view all used unsold cars |
 | /api/v2/cars/all?status=available&state=new | GET | Get the user to view all new unsold cars |
