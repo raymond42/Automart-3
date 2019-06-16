@@ -27,9 +27,3 @@ after_success:
 cache:
   directories:
     - "node_modules"
-    script:
-- dos2unix ${TRAVIS_BUILD_DIR}/scripts/*
-addons:
-  apt:
-    packages:
-    - dos2unix
