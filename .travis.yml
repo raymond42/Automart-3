@@ -1,16 +1,29 @@
 language: node_js
+
 node_js:
- - 'stable'
-cache:
- directories:
-   - 'node_modules'
+  - "stable"
+
+services:
+  - postgresql
+
+before_install:
+  - psql -c 'create database test' -U postgres
+
 before_script:
- - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
- - chmod +x ./cc-test-reporter
- - ./cc-test-reporter before-build
-script:
- - npm test
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 after_script:
- - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  
+script:
+  - npm install 
+  - npm run test
+
 after_success:
- - npm run coveralls
+  - npm run coveralls
+
+cache:
+  directories:
+    - "node_modules"
