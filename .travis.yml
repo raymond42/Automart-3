@@ -20,11 +20,6 @@ after_script:
 script:
   - npm install 
   - npm run test
-  - dos2unix ${TRAVIS_BUILD_DIR}/scripts/*
-addons:
-  apt:
-    packages:
-    - dos2unix
 
 after_success:
   - npm run coveralls
@@ -32,3 +27,9 @@ after_success:
 cache:
   directories:
     - "node_modules"
+    script:
+- dos2unix ${TRAVIS_BUILD_DIR}/scripts/*
+addons:
+  apt:
+    packages:
+    - dos2unix
