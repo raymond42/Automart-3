@@ -14,7 +14,7 @@ const admin = {
   is_admin: true,
 };
 
-const adAdmin = 'INSERT INTO users(email, first_name, last_name, password, address, is_admin) VALUES($1,$2,$3,$4,$5,$6)ON CONFLICT DO NOTHING';
+const adAdmin = 'INSERT INTO users(email, first_name, last_name, password, address, is_admin) VALUES($1,$2,$3,$4,$5,$6)';
 pool.query(adAdmin,
   [
     admin.email,
