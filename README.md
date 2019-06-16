@@ -35,8 +35,8 @@ Auto Mart,  can sell their cars or buy from trusted dealerships or private selle
 | /api/v2/cars/available | GET | Get user to User can view all unsold cars |
 | /api/v2/cars/available/range | GET | Get the user to view all unsold cars within a price range |
 | /api/v2/cars/posted | GET | Get the Aamin to view all posted ads whether sold or unsold |
-| /api/v2/cars/available/used | GET | Get the user to view all used unsold cars |
-| /api/v2/cars/available/new | GET | Get the user to view all new unsold cars |
+| /api/v2/cars/all?status=available&state=used | GET | Get the user to view all used unsold cars |
+| /api/v2/cars/all?status=available&state=new | GET | Get the user to view all new unsold cars |
 | /api/v2/car/:id | DELETE | Get the admin to delete a posted AD record |
 
 ## Used Tools
