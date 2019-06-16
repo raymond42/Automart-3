@@ -9,8 +9,28 @@ chai.use(chaiHttp);
 chai.should();
 dotenv.config();
 
-
 describe('Post a car a sale ad', () => {
+  it('first user should signup', (done) => {
+    const user = {
+      email: 'raymond@gmail.com',
+      first_name: 'Raymond',
+      last_name: 'Gakwaya',
+      password: 'Asdfg1',
+      address: 'Rwanda',
+      is_admin: false,
+    };
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.should.be.an('object');
+        res.body.should.have.property('status').eql(201);
+        res.body.should.have.property('data');
+        done();
+      });
+  });
+
   it('user should be able to post a car sale ad', (done) => {
     const payload = {
       id: 2,
@@ -30,6 +50,7 @@ describe('Post a car a sale ad', () => {
         price: 40000,
         state: 'new',
         status: 'available',
+        body_type: 'car',
       })
       .end((err, res) => {
         res.should.have.status(201);
@@ -47,58 +68,6 @@ describe('Post a car a sale ad', () => {
         res.should.have.status(401);
         res.should.be.an('object');
         res.body.should.have.property('status').eql(401);
-        res.body.should.have.property('error');
-        done();
-      });
-  });
-  it('user should not be able to post a car sale ad when he/she is not in the system', (done) => {
-    const user = {
-      email: 'raymond@gmail.com',
-    };
-    const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: '15min' });
-    const carAd = {
-      owner: 1,
-      email: 'fadskh@gmail.com',
-      manufacturer: 'Toyota',
-      model: '2019 Toyota camry',
-      price: 40000,
-      state: 'new',
-      status: 'available',
-    };
-    chai.request(app)
-      .post('/api/v2/car')
-      .set('Authorization', token)
-      .send(carAd)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.should.be.an('object');
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('message');
-        done();
-      });
-  });
-  it('user should not be able to post a car sale ad when the owner id is not found', (done) => {
-    const user = {
-      email: 'raymond@gmail.com',
-    };
-    const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: '15min' });
-    const carAd = {
-      owner: 120,
-      email: 'fadskh@gmail.com',
-      manufacturer: 'Toyota',
-      model: '2019 Toyota camry',
-      price: 40000,
-      state: 'new',
-      status: 'available',
-    };
-    chai.request(app)
-      .post('/api/v2/car')
-      .set('Authorization', token)
-      .send(carAd)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.should.be.an('object');
-        res.body.should.have.property('status').eql(404);
         res.body.should.have.property('error');
         done();
       });

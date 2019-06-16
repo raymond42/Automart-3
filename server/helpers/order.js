@@ -4,7 +4,6 @@ const validateOrder = {
 
   validation(newOrder) {
     const newOrderSchema = {
-      buyer: Joi.number().required(),
       car_id: Joi.number().required(),
       amount: Joi.number().required(),
     };

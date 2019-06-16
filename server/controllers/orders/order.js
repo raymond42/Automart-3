@@ -14,23 +14,10 @@ const Order = async (req, res) => {
     }
 
     const newOrder = {
-      buyer: req.body.buyer,
       car_id: req.body.car_id,
       amount: req.body.amount,
       status: req.body.status || 'pending',
     };
-
-    const findBuyerId = 'SELECT * FROM users WHERE id = $1';
-    const value = newOrder.buyer;
-    const buyerId = await pool.query(findBuyerId, [value]);
-
-    if (!buyerId.rows[0]) {
-      res.status(404).json({
-        status: 404,
-        error: 'buyer id not found',
-      });
-      return;
-    }
 
     const findCarId = 'SELECT * FROM cars WHERE id = $1';
     const carValue = newOrder.car_id;
@@ -46,7 +33,7 @@ const Order = async (req, res) => {
     const insertOrder = 'INSERT INTO orders(buyer, car_id, amount, status) VALUES($1, $2, $3, $4) RETURNING *';
     const results = await pool.query(insertOrder,
       [
-        newOrder.buyer,
+        req.user.id,
         newOrder.car_id,
         newOrder.amount,
         newOrder.status,

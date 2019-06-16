@@ -13,7 +13,7 @@ chai.should();
 describe('signup', () => {
   it('user should be able to signup', (done) => {
     const user = {
-      email: 'raymond@gmail.com',
+      email: 'ray@gmail.com',
       first_name: 'Raymond',
       last_name: 'Gakwaya',
       password: 'Asdfg1',

@@ -19,7 +19,8 @@ const markadsold = async (req, res) => {
     if (!car.rows[0]) {
       res.status(404).json({
         status: 404,
-        error: 'car post not found',
+        message: 'car post not found',
+        data: [],
       });
     }
     if (car.rows[0].status === req.body.status) {

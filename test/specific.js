@@ -16,7 +16,7 @@ describe('Viewing a specific car', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v1/car/1')
+      .get('/api/v2/car/1')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
@@ -29,7 +29,7 @@ describe('Viewing a specific car', () => {
 
   it('user should not be able to view a specific car when he is not authorized', (done) => {
     chai.request(app)
-      .get('/api/v1/car/1')
+      .get('/api/v2/car/1')
       .end((err, res) => {
         res.should.have.status(401);
         res.should.be.an('object');
@@ -45,7 +45,7 @@ describe('Viewing a specific car', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v1/car/19')
+      .get('/api/v2/car/19')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(404);
@@ -62,7 +62,7 @@ describe('Viewing a specific car', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v1/car/19')
+      .get('/api/v2/car/19')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(404);

@@ -52,7 +52,7 @@ router.delete('/car/:id', auth, deletePosted);
 // get all cars
 router.get('/cars/all', auth, allposted);
 
-// get all used unsold cars
+// get all used or new unsold cars
 router.get('/all', auth, getUsedUnsoldCars);
 
 export default router;
