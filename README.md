@@ -111,6 +111,10 @@ It will install the node_modules which will help you run the project on your loc
 ```
 > npm start
 ```
+## Run tests
+```
+> npm test
+```
 
 
 ## Author
