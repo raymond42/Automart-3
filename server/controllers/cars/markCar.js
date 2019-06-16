@@ -22,17 +22,13 @@ const markadsold = async (req, res) => {
         message: 'car post not found',
         data: [],
       });
+      return;
     }
+
     if (car.rows[0].status === req.body.status) {
       res.status(400).json({
         status: 400,
         error: `The car is already marked as ${car.rows[0].status}`,
-      });
-    }
-    if (req.body.status === 'available') {
-      res.status(400).json({
-        status: 400,
-        error: 'you can not set the status of the car to available when it is sold!!',
       });
       return;
     }

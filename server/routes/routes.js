@@ -50,7 +50,7 @@ router.get('/cars', auth, getUnsoldCarsWithinPriceRange);
 router.delete('/car/:id', auth, deletePosted);
 
 // get all cars
-router.get('/cars/all', auth, allposted);
+router.get('/cars/getAll', auth, allposted);
 
 // get all used or new unsold cars
 router.get('/all', auth, getUsedUnsoldCars);
