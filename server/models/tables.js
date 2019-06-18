@@ -21,8 +21,7 @@ const createTables = `
       price INT NOT NULL,
       manufacturer VARCHAR(20) NOT NULL,
       model VARCHAR(20) NOT NULL,
-      body_type VARCHAR(20) NOT NULL,
-      FOREIGN KEY (owner) REFERENCES users(id) ON DELETE CASCADE
+      body_type VARCHAR(20) NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS orders(
@@ -30,17 +29,8 @@ const createTables = `
       buyer INT NOT NULL,
       car_id INT NOT NULL,
       amount INT NOT NULL,
-      status VARCHAR(20) NOT NULL,
-      FOREIGN KEY (buyer) REFERENCES users(id) ON DELETE CASCADE
-    );
+      status VARCHAR(20) NOT NULL
 
-    CREATE TABLE IF NOT EXISTS flags(
-      id SERIAL PRIMARY KEY,
-      car_id INT NOT NULL,
-      created_on TIMESTAMP,
-      reason VARCHAR(20) NOT NULL,
-      description VARCHAR(100) NOT NULL,
-      FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
     )`;
 
 pool.query(createTables).then(() => {
