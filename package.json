@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development npm run createTables && npm run admin && NODE_ENV=development nodemon --exec babel-node ./server/server.js",
-    "start": "NODE_ENV=development npm run createTables &&NODE_ENV=development npm run admin node --require @babel/register ./server/server.js",
+    "start": "npm run createTables && npm run admin node --require @babel/register ./server/server.js",
     "test": "NODE_ENV=test npm run droptablesTests && NODE_ENV=test npm run createTablesTests && NODE_ENV=test npm run admin && NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --timeout 5000  --require @babel/register test/*js --exit || true",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "createTablesTests": "NODE_ENV=test node --require @babel/register ./server/models/tables.js",
