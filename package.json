@@ -14,7 +14,7 @@
     "createTablesTests": "NODE_ENV=test node --require @babel/register ./server/models/tables.js",
     "droptablesTests": "NODE_ENV=test node --require @babel/register ./server/models/dropTables.js",
     "createTables": "node  --require @babel/register ./server/models/tables.js",
-    "dropTables": "node --require @babel/register ./server/models/dropTables.js",
+    "dropTables": "NODE_ENV=development node --require @babel/register ./server/models/dropTables.js",
     "admin": "node --require @babel/register ./server/models/admin.js"
   },
   "repository": {

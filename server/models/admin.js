@@ -9,7 +9,7 @@ const admin = {
   first_name: 'Raymond',
   last_name: 'Gakwaya',
   email: process.env.email,
-  password: bcrypt.hashSync(JSON.stringify(process.env.password), 10),
+  password: bcrypt.hashSync(process.env.password, 10),
   address: 'Kigali',
   is_admin: true,
 };
