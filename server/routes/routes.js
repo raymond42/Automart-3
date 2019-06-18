@@ -1,6 +1,5 @@
 import express from 'express';
-import signup from '../controllers/users/signup';
-import signin from '../controllers/users/signin';
+import Users from '../controllers/users/users';
 import Ads from '../controllers/cars/ads';
 import auth from '../middleware/auth';
 import Order from '../controllers/orders/order';
@@ -17,10 +16,10 @@ import getUsedUnsoldCars from '../controllers/cars/viewUsedUnsold';
 const router = express.Router();
 
 // signup
-router.post('/auth/signup', signup);
+router.post('/auth/signup', Users.signup);
 
 // signin
-router.post('/auth/signin', signin);
+router.post('/auth/signin', Users.signin);
 
 // post a car ad
 router.post('/car', auth, Ads);
