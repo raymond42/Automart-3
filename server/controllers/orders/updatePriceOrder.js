@@ -35,12 +35,16 @@ const updatePriceOrder = async (req, res) => {
     const values = [req.body.price_offered, value];
     await pool.query(newPrice, values);
 
+    const findCar = 'SELECT * FROM cars WHERE id = $1';
+    const carValue = parseInt(req.params.id, 10);
+    const car = await pool.query(findCar, [carValue]);
 
     const newOrder = {
       id: idFound.rows[0].id,
       card_id: idFound.rows[0].card_id,
       created_on: moment().format('LL'),
       status: idFound.rows[0].status,
+      price: car.rows[0].price,
       old_price_offered: idFound.rows[0].amount,
       new_price_offered: req.body.price_offered,
     };
@@ -53,7 +57,7 @@ const updatePriceOrder = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: 500,
-      error: 'server error',
+      error: 'Server error',
     });
   }
 };
