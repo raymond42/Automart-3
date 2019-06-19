@@ -6,6 +6,7 @@ import pool from '../../config/db';
 import validateUpdateStatus from '../../helpers/markCar';
 import validatingRange from '../../helpers/priceRange';
 import validatePostedPrice from '../../helpers/postedPrice';
+import validateUnsold from '../../helpers/unsold';
 
 
 class Cars {
@@ -20,10 +21,11 @@ class Cars {
         return;
       }
 
-      const { manufacturer, model, price, state, status } = req.body;
+      const { manufacturer, model, price, state } = req.body;
       const created_on = moment().format('LL');
       const body_type = req.body.body_type || 'car';
       const owner = req.user.id;
+      const status = 'available';
 
       const insertCar = 'INSERT INTO cars(created_on, owner, manufacturer, model, price, state, status, body_type) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
       const results = await pool.query(insertCar,
@@ -131,7 +133,6 @@ class Cars {
         res.status(404).json({
           status: 404,
           message: 'car not found',
-          data: [],
         });
       } else {
         res.status(200).json({
@@ -150,6 +151,14 @@ class Cars {
   // get all cars
   static async getAllCars(req, res) {
     try {
+      if (req.user.email !== 'admin@gmail.com') {
+        res.status(403).json({
+          status: 403,
+          error: 'Sorry this service is strictly for the right person',
+        });
+        return;
+      }
+
       const findCars = 'SELECT * FROM cars';
       const cars = await pool.query(findCars);
       if (!cars.rows[0]) {
@@ -158,7 +167,9 @@ class Cars {
           message: 'no car found',
           data: [],
         });
+        return;
       }
+
       res.status(200).json({
         status: 200,
         data: cars.rows,
@@ -174,6 +185,15 @@ class Cars {
   // get unsold cars
   static async getUnsoldCars(req, res) {
     try {
+      const { error } = validateUnsold.validation(req.query);
+      if (error) {
+        res.status(400).json({
+          status: 400,
+          error: error.details[0].message,
+        });
+        return;
+      }
+
       const findUnsoldCars = 'SELECT * FROM cars WHERE status = $1';
       const value = req.query.status;
       const unsoldCars = await pool.query(findUnsoldCars, [value]);
@@ -181,8 +201,7 @@ class Cars {
       if (!unsoldCars.rows[0]) {
         res.status(404).json({
           status: 404,
-          message: 'No available car found',
-          data: [],
+          message: `No ${value} cars found`,
         });
         return;
       }

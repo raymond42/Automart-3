@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import routes from './routes/routes';
 import swaggerDoc from '../swagger.json';
+import method from './middleware/method';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.get('/', (req, res) => res.status(200).json({
 }));
 
 app.use('/api/v2/', routes);
+app.use(method);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => { console.log(`app is running on ${port}...`); });
