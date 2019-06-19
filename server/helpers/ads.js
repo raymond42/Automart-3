@@ -8,7 +8,6 @@ const validateAd = {
       model: Joi.string().required(),
       price: Joi.number().required(),
       state: Joi.string().valid('new', 'used').required(),
-      status: Joi.string().valid('available', 'sold').required(),
       body_type: Joi.string(),
     };
     return Joi.validate(newAd, newAdSchema);

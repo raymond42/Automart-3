@@ -20,10 +20,11 @@ class Cars {
         return;
       }
 
-      const { manufacturer, model, price, state, status } = req.body;
+      const { manufacturer, model, price, state } = req.body;
       const created_on = moment().format('LL');
       const body_type = req.body.body_type || 'car';
       const owner = req.user.id;
+      const status = 'available';
 
       const insertCar = 'INSERT INTO cars(created_on, owner, manufacturer, model, price, state, status, body_type) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
       const results = await pool.query(insertCar,
