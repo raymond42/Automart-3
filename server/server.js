@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(bodyParser.json());
-app.use('/automart', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/automart3', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.get('/', (req, res) => res.status(200).json({
   message: 'Welcome to AutoMart',
 }));
