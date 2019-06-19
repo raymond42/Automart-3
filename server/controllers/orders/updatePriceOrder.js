@@ -39,6 +39,14 @@ const updatePriceOrder = async (req, res) => {
     const carValue = parseInt(req.params.id, 10);
     const car = await pool.query(findCar, [carValue]);
 
+    if (car.rows[0].owner !== req.user.id) {
+      res.status(403).json({
+        status: 403,
+        error: 'You can only update your car order',
+      });
+      return;
+    }
+
     const newOrder = {
       id: idFound.rows[0].id,
       card_id: idFound.rows[0].card_id,
