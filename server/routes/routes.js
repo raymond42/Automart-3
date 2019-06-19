@@ -1,29 +1,20 @@
 import express from 'express';
-import signup from '../controllers/users/signup';
-import signin from '../controllers/users/signin';
-import Ads from '../controllers/cars/ads';
+import Users from '../controllers/users/users';
+import Cars from '../controllers/cars/cars';
 import auth from '../middleware/auth';
 import Order from '../controllers/orders/order';
 import updatePriceOrder from '../controllers/orders/updatePriceOrder';
-import markadsold from '../controllers/cars/markCar';
-import updatePriceCar from '../controllers/cars/updatePriceCar';
-import getCar from '../controllers/cars/specific';
-import getUnsoldCars from '../controllers/cars/unsold';
-import getUnsoldCarsWithinPriceRange from '../controllers/cars/unsoldPriceRange';
-import deletePosted from '../controllers/cars/delete';
-import allposted from '../controllers/cars/allPosted';
-import getUsedUnsoldCars from '../controllers/cars/viewUsedUnsold';
 
 const router = express.Router();
 
 // signup
-router.post('/auth/signup', signup);
+router.post('/auth/signup', Users.signup);
 
 // signin
-router.post('/auth/signin', signin);
+router.post('/auth/signin', Users.signin);
 
 // post a car ad
-router.post('/car', auth, Ads);
+router.post('/car', auth, Cars.ads);
 
 // purchasing order
 router.post('/order', auth, Order);
@@ -32,27 +23,27 @@ router.post('/order', auth, Order);
 router.patch('/order/:id/price', auth, updatePriceOrder);
 
 // mark a posted car ad as sold
-router.patch('/car/:id/status', auth, markadsold);
+router.patch('/car/:id/status', auth, Cars.markCar);
 
 // update the price of a posted car ad
-router.patch('/car/:id/price', auth, updatePriceCar);
+router.patch('/car/:id/price', auth, Cars.updatePriceCar);
 
 // get a specific car
-router.get('/car/:id', auth, getCar);
+router.get('/car/:id', auth, Cars.getSpecificCar);
 
 // get available cars
-router.get('/car', auth, getUnsoldCars);
+router.get('/car', auth, Cars.getUnsoldCars);
 
 // get available cars within a price range
-router.get('/cars', auth, getUnsoldCarsWithinPriceRange);
+router.get('/cars', auth, Cars.unsoldCarsWithinRange);
 
 // delete a car post
-router.delete('/car/:id', auth, deletePosted);
+router.delete('/car/:id', auth, Cars.deleteCar);
 
 // get all cars
-router.get('/cars/getAll', auth, allposted);
+router.get('/cars/getAll', auth, Cars.getAllCars);
 
 // get all used or new unsold cars
-router.get('/all', auth, getUsedUnsoldCars);
+router.get('/all', auth, Cars.getUnsoldState);
 
 export default router;

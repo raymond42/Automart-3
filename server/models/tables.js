@@ -30,6 +30,7 @@ const createTables = `
       car_id INT NOT NULL,
       amount INT NOT NULL,
       status VARCHAR(20) NOT NULL
+    );
 
     )`;
 
