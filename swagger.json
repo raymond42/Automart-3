@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-      "version": "1.0.0",
+      "version": "2.0.0",
       "title": "Automart",
       "description": "Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With Auto Mart, can sell their cars or buy from trusted dealerships or private sellers",
       "license": {
@@ -9,8 +9,7 @@
         "url": "https://opensource.org/licenses/MIT"
       }
     },
-    "host": "https://github.com/raymond42/Auto-Mart.git",
-    "basePath": "/api/v1",
+    "basePath": "/api/v2",
     "tags": [
       {
         "name": "Users",
@@ -67,6 +66,9 @@
               "400": {
                 "description": "Error: invalid input"
               },
+              "405": {
+                "description": "Error: Method not allowed"
+              },
               "500": {
                 "description": "Server Error"
               }
@@ -94,11 +96,17 @@
             "application/json"
           ],
           "responses": {
-            "201": {
+            "200": {
                 "description": "success: successfully loged in"
               },
               "400": {
                 "description": "Error: invalid input"
+              },
+              "404": {
+                "description": "Error: user not found"
+              },
+              "405": {
+                "description": "Error: Method not allowed"
               },
               "500": {
                 "description": "Server Error"
@@ -142,6 +150,9 @@
             },
             "401": {
               "description": "Error: this is when someone tries to post a car sale ad when he is not authorized"
+            },
+            "405": {
+              "description": "Error: Method not allowed"
             },
             "500": {
               "description": "Server Error"
@@ -196,6 +207,9 @@
               "401": {
                 "description": "Error: this is when someone tries to mark a car when he is not authorized"
               },
+              "405": {
+                "description": "Error: Method not allowed"
+              },
               "500": {
                 "description": "Server Error"
               }
@@ -235,6 +249,9 @@
               },
               "401": {
                 "description": "Error: this is when someone tries to view a car when he is not authorized"
+              },
+              "405": {
+                "description": "Error: Method not allowed"
               },
               "500": {
                 "description": "Server Error"
@@ -276,6 +293,9 @@
               "401": {
                 "description": "Error: this is when someone tries to delete a car sale ad when he is not authorized"
               },
+              "405": {
+                "description": "Error: Method not allowed"
+              },
               "500": {
                 "description": "Server Error"
               }
@@ -309,6 +329,9 @@
               },
               "401": {
                 "description": "Error: this is when someone tries to retrieve posted cars when he is not authorized"
+              },
+              "405": {
+                "description": "Error: Method not allowed"
               },
               "500": {
                 "description": "Server Error"
@@ -350,6 +373,9 @@
               },
               "401": {
                 "description": "Error: this is when someone tries to update the price of a posted car when he is not authorized"
+              },
+              "405": {
+                "description": "Error: Method not allowed"
               },
               "500": {
                 "description": "Server Error"
@@ -393,6 +419,9 @@
               },
               "401": {
                 "description": "Error: this is when someone tries to post a car sale ad when he is not authorized"
+              },
+              "405": {
+                "description": "Error: Method not allowed"
               },
               "500": {
                 "description": "Server Error"
@@ -446,6 +475,9 @@
               "401": {
                 "description": "Error: this is when someone tries to post a car sale ad when he is not authorized"
               },
+              "405": {
+                "description": "Error: Method not allowed"
+              },
               "500": {
                 "description": "Server Error"
               }
@@ -486,6 +518,9 @@
               },
               "401": {
                 "description": "Error: this is when someone tries to retrieve posted cars when he is not authorized"
+              },
+              "405": {
+                "description": "Error: Method not allowed"
               },
               "500": {
                 "description": "Server Error"
@@ -537,13 +572,16 @@
               "401": {
                 "description": "Error: this is when someone tries to retrieve unsold cars when he is not authorized"
               },
+              "405": {
+                "description": "Error: Method not allowed"
+              },
               "500": {
                 "description": "Server Error"
               }
           }
         }
       },
-      "/cars/used": {
+      "/all?status=available&state=used": {
         "get": {
           "tags": [
             "Cars"
@@ -559,6 +597,14 @@
                 "description" :"The user token",
                 "required":true
               
+              },
+              {
+                "name":"state",
+                "in": "query",
+                "description" :"used",
+                "required":true,
+                "type":"string"
+              
               }
           ],
           "responses": {
@@ -571,13 +617,16 @@
               "401": {
                 "description": "Error: this is when someone tries to retrieve used unsold cars when he is not authorized"
               },
+              "405": {
+                "description": "Error: Method not allowed"
+              },
               "500": {
                 "description": "Server Error"
               }
           }
         }
       },
-      "/cars/new": {
+      "/all?status=available&state=new": {
         "get": {
           "tags": [
             "Cars"
@@ -593,6 +642,14 @@
                 "description" :"The user token",
                 "required":true
               
+              },
+              {
+                "name":"state",
+                "in": "query",
+                "description" :"new",
+                "required":true,
+                "type":"string"
+              
               }
           ],
           "responses": {
@@ -601,6 +658,9 @@
               },
               "404": {
                 "description": "Error: no new unsold cars found"
+              },
+              "405": {
+                "description": "Error: Method not allowed"
               },
               "401": {
                 "description": "Error: this is when someone tries to retrieve new unsold cars when he is not authorized"
@@ -640,10 +700,6 @@
           },
           "address": {
             "type": "string"
-          },
-          "isAdmin": {
-            "type": "boolean",
-            "toBe": "true or false"
           }
         }
       },
@@ -699,7 +755,6 @@
     },
       "order": {
         "required": [
-            "buyer",
             "car_id",
             "amount"
         ],
