@@ -6,6 +6,7 @@ import pool from '../../config/db';
 import validateUpdateStatus from '../../helpers/markCar';
 import validatingRange from '../../helpers/priceRange';
 import validatePostedPrice from '../../helpers/postedPrice';
+import validateUnsold from '../../helpers/unsold';
 
 
 class Cars {
@@ -174,6 +175,15 @@ class Cars {
   // get unsold cars
   static async getUnsoldCars(req, res) {
     try {
+      const { error } = validateUnsold.validation(req.query);
+      if (error) {
+        res.status(400).json({
+          status: 400,
+          error: error.details[0].message,
+        });
+        return;
+      }
+
       const findUnsoldCars = 'SELECT * FROM cars WHERE status = $1';
       const value = req.query.status;
       const unsoldCars = await pool.query(findUnsoldCars, [value]);
@@ -181,7 +191,7 @@ class Cars {
       if (!unsoldCars.rows[0]) {
         res.status(404).json({
           status: 404,
-          message: 'No unsold cars found',
+          message: `No ${value} cars found`,
         });
         return;
       }
