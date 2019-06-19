@@ -151,6 +151,14 @@ class Cars {
   // get all cars
   static async getAllCars(req, res) {
     try {
+      if (req.user.email !== 'admin@gmail.com') {
+        res.status(403).json({
+          status: 403,
+          error: 'Sorry this service is strictly for the right person',
+        });
+        return;
+      }
+
       const findCars = 'SELECT * FROM cars';
       const cars = await pool.query(findCars);
       if (!cars.rows[0]) {
@@ -159,7 +167,9 @@ class Cars {
           message: 'no car found',
           data: [],
         });
+        return;
       }
+
       res.status(200).json({
         status: 200,
         data: cars.rows,
