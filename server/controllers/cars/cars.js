@@ -132,7 +132,6 @@ class Cars {
         res.status(404).json({
           status: 404,
           message: 'car not found',
-          data: [],
         });
       } else {
         res.status(200).json({
@@ -182,8 +181,7 @@ class Cars {
       if (!unsoldCars.rows[0]) {
         res.status(404).json({
           status: 404,
-          message: 'No available car found',
-          data: [],
+          message: 'No unsold cars found',
         });
         return;
       }
