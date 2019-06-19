@@ -326,7 +326,10 @@ class Cars {
       }
 
       if (car.rows[0].owner !== req.user.id && req.user.email !== 'admin@gmail.com') {
-        res.send('toka kulee');
+        res.status(403).json({
+          status: 403,
+          error: 'Sorry, you can not delete this car',
+        });
         return;
       }
       const deleteCar = 'DELETE FROM cars WHERE id = $1';
