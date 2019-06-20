@@ -16,7 +16,7 @@ describe('Viewing a specific car', () => {
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v2/car/1')
+      .get('/api/v2/car/2')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);

@@ -10,14 +10,32 @@ chai.use(chaiHttp);
 chai.should();
 
 describe('Marking the posted car ad as sold', () => {
+  it('user should be able to signup', (done) => {
+    const user = {
+      email: 'ray@gmail.com',
+      first_name: 'Raymond',
+      last_name: 'Gakwaya',
+      password: 'Asdfg1',
+      address: 'Rwanda',
+    };
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.should.be.an('object');
+        res.body.should.have.property('status').eql(201);
+        res.body.should.have.property('data');
+        done();
+      });
+  });
   it('first user should be able to post a car sale ad', (done) => {
     const payload = {
       id: 2,
-      email: 'raymond@gmail.com',
+      email: 'ray@gmail.com',
       first_name: 'Raymond',
       last_name: 'Gakwaya',
       address: 'Rwanda',
-      is_admin: false,
     };
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
@@ -28,8 +46,6 @@ describe('Marking the posted car ad as sold', () => {
         model: '2019 Toyota camry',
         price: 40000,
         state: 'new',
-        status: 'available',
-        body_type: 'car',
       })
       .end((err, res) => {
         res.should.have.status(201);
@@ -43,20 +59,17 @@ describe('Marking the posted car ad as sold', () => {
   it('user should be able to mark a posted car ad as sold', (done) => {
     const payload = {
       id: 2,
-      email: 'raymond@gmail.com',
+      email: 'ray@gmail.com',
       first_name: 'Raymond',
       last_name: 'Gakwaya',
       address: 'Rwanda',
       is_admin: false,
     };
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24hrs' });
-    const status = {
-      status: 'sold',
-    };
     chai.request(app)
       .patch('/api/v2/car/2/status')
       .set('Authorization', token)
-      .send(status)
+      .send({ status: 'sold' })
       .end((err, res) => {
         res.should.have.status(200);
         res.should.be.an('object');

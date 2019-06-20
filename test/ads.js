@@ -17,7 +17,6 @@ describe('Post a car a sale ad', () => {
       last_name: 'Gakwaya',
       password: 'Asdfg1',
       address: 'Rwanda',
-      is_admin: false,
     };
     chai.request(app)
       .post('/api/v2/auth/signup')
@@ -49,8 +48,6 @@ describe('Post a car a sale ad', () => {
         model: '2019 Toyota camry',
         price: 40000,
         state: 'new',
-        status: 'available',
-        body_type: 'car',
       })
       .end((err, res) => {
         res.should.have.status(201);

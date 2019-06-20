@@ -10,13 +10,13 @@ chai.should();
 dotenv.config();
 
 describe('View used unsold cars', () => {
-  it('user should be able to view used unsold cars', (done) => {
+  it('user should be able to view used or new unsold cars', (done) => {
     const buyer = {
-      email: 'chris@gmail.com',
+      email: 'ray@gmail.com',
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
-      .get('/api/v2/cars/used')
+      .get('/api/v2/all?status=available&state=new')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);

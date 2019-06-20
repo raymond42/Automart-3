@@ -4,7 +4,7 @@ const validateUnsold = {
 
   validation(range) {
     const newPriceSchema = {
-      status: Joi.string().valid('unsold', 'sold').required(),
+      status: Joi.string().valid('available', 'sold').required(),
     };
     return Joi.validate(range, newPriceSchema);
   },

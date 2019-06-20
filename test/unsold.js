@@ -11,10 +11,15 @@ dotenv.config();
 
 describe('Viewing all unsold cars', () => {
   it('user should be able to view all unsold cars', (done) => {
-    const buyer = {
-      email: 'chris@gmail.com',
+    const payload = {
+      id: 2,
+      email: 'ray@gmail.com',
+      first_name: 'Raymond',
+      last_name: 'Gakwaya',
+      address: 'Rwanda',
+      is_admin: false,
     };
-    const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
+    const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)
       .get('/api/v2/car?status=available')
       .set('Authorization', token)
