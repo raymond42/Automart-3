@@ -117,7 +117,7 @@ class Cars {
     } catch (error) {
       res.status(500).json({
         status: 500,
-        error,
+        error: 'Server error',
       });
     }
   }
@@ -143,7 +143,7 @@ class Cars {
     } catch (error) {
       res.status(500).json({
         status: 500,
-        error,
+        error: 'Server error',
       });
     }
   }
@@ -298,7 +298,7 @@ class Cars {
     } catch (error) {
       res.status(500).json({
         status: 500,
-        error,
+        error: 'Server error',
       });
     }
   }
