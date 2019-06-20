@@ -1,5 +1,8 @@
 /* eslint-disable no-console */
+import bcrypt from 'bcrypt';
 import pool from '../config/db';
+
+const password = bcrypt.hashSync('thisisandela', 10);
 
 const createTables = `
     CREATE TABLE IF NOT EXISTS users(
@@ -30,7 +33,10 @@ const createTables = `
       car_id INT NOT NULL,
       amount INT NOT NULL,
       status VARCHAR(20) NOT NULL
-    )`;
+    );
+    
+    INSERT INTO users(email, first_name, last_name, password, address, is_admin) 
+    VALUES('admin@gmail.com', 'Raymond', 'Gakwaya', '${password}', 'Kigali', 'true')`;
 
 pool.query(createTables).then(() => {
   console.log('tables created successfully');
