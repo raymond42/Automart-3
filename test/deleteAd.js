@@ -12,7 +12,7 @@ dotenv.config();
 describe('Delete a posted car ad', () => {
   it('user should be able to delete posted car ad', (done) => {
     const buyer = {
-      email: 'chris@gmail.com',
+      email: 'admin@gmail.com',
     };
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     chai.request(app)

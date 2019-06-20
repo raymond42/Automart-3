@@ -13,7 +13,7 @@ describe('Purchasing order', () => {
   it('post a car sale first', (done) => {
     const payload = {
       id: 2,
-      email: 'raymond@gmail.com',
+      email: 'ray@gmail.com',
       first_name: 'Raymond',
       last_name: 'Gakwaya',
       address: 'Rwanda',
@@ -28,8 +28,6 @@ describe('Purchasing order', () => {
         model: '2019 Toyota camry',
         price: 40000,
         state: 'new',
-        status: 'available',
-        body_type: 'car',
       })
       .end((err, res) => {
         res.should.have.status(201);
@@ -42,7 +40,7 @@ describe('Purchasing order', () => {
   it('buyer should be able to make a purchasing order', (done) => {
     const payload = {
       id: 2,
-      email: 'raymond@gmail.com',
+      email: 'ray@gmail.com',
       first_name: 'Raymond',
       last_name: 'Gakwaya',
       address: 'Rwanda',
@@ -50,8 +48,8 @@ describe('Purchasing order', () => {
     };
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     const newOrder = {
-      car_id: 1,
-      amount: 20000,
+      car_id: 2,
+      amount: 32000,
     };
     chai.request(app)
       .post('/api/v2/order')

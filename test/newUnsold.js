@@ -28,8 +28,6 @@ describe('View new unsold cars', () => {
         model: '2019 Toyota camry',
         price: 40000,
         state: 'new',
-        status: 'available',
-        body_type: 'car',
       })
       .end((err, res) => {
         res.should.have.status(201);
