@@ -16,7 +16,7 @@ const updatePriceOrder = async (req, res) => {
     const findOrderId = 'SELECT * FROM orders WHERE id = $1';
     const value = parseInt(req.params.id, 10);
     const idFound = await pool.query(findOrderId, [value]);
-    if (!idFound.rows[0]) {
+    if (!idFound.rows.length) {
       res.status(404).json({
         status: 404,
         error: 'order not found',
@@ -24,7 +24,7 @@ const updatePriceOrder = async (req, res) => {
       return;
     }
 
-    if (idFound.rows[0].id !== req.user.id) {
+    if (idFound.rows[0].buyer !== req.user.id) {
       res.status(403).json({
         status: 403,
         error: 'You can only update your car order',

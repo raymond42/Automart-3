@@ -268,18 +268,18 @@ class Cars {
       const value = parseInt(req.params.id, 10);
       const carId = await pool.query(findCarId, [value]);
 
-      if (carId.rows[0].id !== req.user.id) {
-        res.status(403).json({
-          status: 403,
-          error: 'Sorry, you can only update your car post',
+      if (!carId.rows.length) {
+        res.status(404).json({
+          status: 404,
+          error: 'Car post not found',
         });
         return;
       }
 
-      if (!carId.rows[0]) {
-        res.status(404).json({
-          status: 404,
-          error: 'Car post not found',
+      if (carId.rows[0].owner !== req.user.id) {
+        res.status(403).json({
+          status: 403,
+          error: 'Sorry, you can only update your car post',
         });
         return;
       }

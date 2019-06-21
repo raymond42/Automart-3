@@ -30,6 +30,14 @@ const Order = async (req, res) => {
       });
       return;
     }
+
+    if (carId.rows[0].owner === req.user.id) {
+      res.status(403).json({
+        status: 403,
+        error: 'sorry, you can not order your own car',
+      });
+      return;
+    }
     const insertOrder = 'INSERT INTO orders(buyer, car_id, amount, status) VALUES($1, $2, $3, $4) RETURNING *';
     const results = await pool.query(insertOrder,
       [
