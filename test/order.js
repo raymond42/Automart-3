@@ -39,7 +39,7 @@ describe('Purchasing order', () => {
   });
   it('buyer should be able to make a purchasing order', (done) => {
     const payload = {
-      id: 2,
+      id: 1,
       email: 'ray@gmail.com',
       first_name: 'Raymond',
       last_name: 'Gakwaya',

@@ -12,7 +12,7 @@ dotenv.config();
 describe('updating the price posted car ad', () => {
   it('seller should be able to update the price of posted car ad', (done) => {
     const seller = {
-      email: 'chris@gmail.com',
+      email: 'raymond@gmail.com',
     };
     const token = jwt.sign(seller, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     const newOrder = {
