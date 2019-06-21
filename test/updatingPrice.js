@@ -58,8 +58,8 @@ describe('updating the price purchasing order', () => {
   });
   it('buyer should be able to make a purchasing order', (done) => {
     const payload = {
-      id: 2,
-      email: 'raymu@gmail.com',
+      id: 1,
+      email: 'admin@gmail.com',
       first_name: 'Raymond',
       last_name: 'Gakwaya',
       address: 'Rwanda',
@@ -85,8 +85,8 @@ describe('updating the price purchasing order', () => {
 
   it('buyer should be able to update the price of purchasing order', (done) => {
     const payload = {
-      id: 2,
-      email: 'raymu@gmail.com',
+      id: 1,
+      email: 'admin@gmail.com',
       first_name: 'Raymond',
       last_name: 'Gakwaya',
       address: 'Rwanda',

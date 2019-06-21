@@ -10,16 +10,67 @@ chai.should();
 dotenv.config();
 
 describe('updating the price posted car ad', () => {
+  it('first user should signup', (done) => {
+    const user = {
+      email: 'raymundo@gmail.com',
+      first_name: 'Raymond',
+      last_name: 'Gakwaya',
+      password: 'Asdfg1',
+      address: 'Rwanda',
+    };
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.should.be.an('object');
+        res.body.should.have.property('status').eql(201);
+        res.body.should.have.property('data');
+        done();
+      });
+  });
+  it('post a car sale first', (done) => {
+    const payload = {
+      id: 2,
+      email: 'raymundo@gmail.com',
+      first_name: 'Raymond',
+      last_name: 'Gakwaya',
+      address: 'Rwanda',
+      is_admin: false,
+    };
+    const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24hrs' });
+    chai.request(app)
+      .post('/api/v2/car')
+      .set('Authorization', token)
+      .send({
+        manufacturer: 'Toyota',
+        model: '2019 Toyota camry',
+        price: 40000,
+        state: 'new',
+      })
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.should.be.an('object');
+        res.body.should.have.property('status').eql(201);
+        res.body.should.have.property('data');
+        done();
+      });
+  });
   it('seller should be able to update the price of posted car ad', (done) => {
     const seller = {
-      email: 'raymond@gmail.com',
+      id: 2,
+      email: 'raymundo@gmail.com',
+      first_name: 'Raymond',
+      last_name: 'Gakwaya',
+      address: 'Rwanda',
+      is_admin: false,
     };
     const token = jwt.sign(seller, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     const newOrder = {
       price: 20000,
     };
     chai.request(app)
-      .patch('/api/v2/car/2/price')
+      .patch('/api/v2/car/4/price')
       .set('Authorization', token)
       .send(newOrder)
       .end((err, res) => {
