@@ -7,6 +7,7 @@ import validateUpdateStatus from '../../helpers/markCar';
 import validatingRange from '../../helpers/priceRange';
 import validatePostedPrice from '../../helpers/postedPrice';
 import validateUnsold from '../../helpers/unsold';
+import Utils from '../../models/utils';
 
 
 class Cars {
@@ -53,7 +54,6 @@ class Cars {
           status,
         },
       });
-      return;
     } catch (error) {
       res.status(500).json({
         status: 500,
@@ -73,11 +73,9 @@ class Cars {
         });
         return;
       }
-      const findCarId = 'SELECT * FROM cars WHERE id = $1';
-      const value = parseInt(req.params.id, 10);
-      const car = await pool.query(findCarId, [value]);
 
-      if (!car.rows[0]) {
+      const car = await Utils.util('cars', 'id', parseInt(req.params.id, 10));
+      if (!car.thing.rows[0]) {
         res.status(404).json({
           status: 404,
           message: 'car post not found',
@@ -86,18 +84,18 @@ class Cars {
         return;
       }
 
-      if (car.rows[0].status === req.body.status) {
+      if (car.thing.rows[0].status === req.body.status) {
         res.status(400).json({
           status: 400,
-          error: `The car is already marked as ${car.rows[0].status}`,
+          error: `The car is already marked as ${car.thing.rows[0].status}`,
         });
         return;
       }
 
       const carStatus = 'UPDATE cars SET status = $1 WHERE id = $2';
-      const values = [req.body.status, value];
+      const values = [req.body.status, car.value];
       await pool.query(carStatus, values);
-      const { id, owner, manufacturer, model, price, state } = car.rows[0];
+      const { id, owner, manufacturer, model, price, state } = car.thing.rows[0];
       const newCar = {
         id,
         owner,
@@ -113,7 +111,6 @@ class Cars {
         status: 200,
         data: newCar,
       });
-      return;
     } catch (error) {
       res.status(500).json({
         status: 500,
@@ -125,11 +122,9 @@ class Cars {
   // get specific car
   static async getSpecificCar(req, res) {
     try {
-      const findCar = 'SELECT * FROM cars WHERE id = $1';
-      const value = parseInt(req.params.id, 10);
-      const car = await pool.query(findCar, [value]);
+      const car = await Utils.util('cars', 'id', parseInt(req.params.id, 10));
 
-      if (!car.rows[0]) {
+      if (!car.thing.rows[0]) {
         res.status(404).json({
           status: 404,
           message: 'car not found',
@@ -137,7 +132,7 @@ class Cars {
       } else {
         res.status(200).json({
           status: 200,
-          data: car.rows[0],
+          data: car.thing.rows,
         });
       }
     } catch (error) {
@@ -194,20 +189,18 @@ class Cars {
         return;
       }
 
-      const findUnsoldCars = 'SELECT * FROM cars WHERE status = $1';
-      const value = req.query.status;
-      const unsoldCars = await pool.query(findUnsoldCars, [value]);
+      const unsoldCars = await Utils.util('cars', 'status', req.query.status);
 
-      if (!unsoldCars.rows[0]) {
+      if (!unsoldCars.thing.rows[0]) {
         res.status(404).json({
           status: 404,
-          message: `No ${value} cars found`,
+          message: `No ${unsoldCars.value} cars found`,
         });
         return;
       }
       res.status(200).json({
         status: 200,
-        data: unsoldCars.rows,
+        data: unsoldCars.thing.rows,
       });
     } catch (error) {
       res.status(500).json({
@@ -229,11 +222,9 @@ class Cars {
         return;
       }
 
-      const findPrice = 'SELECT * FROM cars WHERE status = $1 AND price >= $2 AND price <= $3';
-      const values = [req.query.status, req.query.min_price, req.query.max_price];
-      const range = await pool.query(findPrice, values);
+      const range = await Utils.priceRange('cars', 'status', req.query.status, 'price', req.query.min_price, req.query.max_price);
 
-      if (!range.rows[0]) {
+      if (!range.thing.rows[0]) {
         res.status(404).json({
           status: 404,
           message: 'can not find car within that range',
@@ -242,7 +233,7 @@ class Cars {
       } else {
         res.status(200).json({
           status: 200,
-          data: range.rows,
+          data: range.thing.rows,
         });
       }
     } catch (error) {
@@ -264,10 +255,7 @@ class Cars {
         });
         return;
       }
-      const findCarId = 'SELECT * FROM cars WHERE id = $1';
-      const value = parseInt(req.params.id, 10);
-      const carId = await pool.query(findCarId, [value]);
-
+      const carId = await Utils.util('cars', 'id', parseInt(req.params.id, 10));
       if (!carId.rows.length) {
         res.status(404).json({
           status: 404,
@@ -284,7 +272,7 @@ class Cars {
         return;
       }
       const updateCar = 'UPDATE cars SET price = $1  WHERE id = $2';
-      const values = [req.body.price, value];
+      const values = [req.body.price, carId.value];
       await pool.query(updateCar, values);
 
       const { id, owner, state, status, manufacturer, model, body_type } = carId.rows[0];
@@ -302,7 +290,6 @@ class Cars {
           body_type,
         },
       });
-      return;
     } catch (error) {
       res.status(500).json({
         status: 500,
@@ -341,10 +328,8 @@ class Cars {
   // delete a car
   static async deleteCar(req, res) {
     try {
-      const findCar = 'SELECT * FROM cars WHERE id = $1';
-      const value = parseInt(req.params.id, 10);
-      const car = await pool.query(findCar, [value]);
-      if (!car.rows[0]) {
+      const car = await Utils.util('cars', 'id', parseInt(req.params.id, 10));
+      if (!car.thing.rows[0]) {
         res.status(404).json({
           status: 404,
           error: 'Car Ad not found',
@@ -352,7 +337,7 @@ class Cars {
         return;
       }
 
-      if (car.rows[0].owner !== req.user.id && req.user.email !== 'admin@gmail.com') {
+      if (car.thing.rows[0].owner !== req.user.id && req.user.email !== 'admin@gmail.com') {
         res.status(403).json({
           status: 403,
           error: 'Sorry, you can not delete this car',
@@ -360,7 +345,7 @@ class Cars {
         return;
       }
       const deleteCar = 'DELETE FROM cars WHERE id = $1';
-      await pool.query(deleteCar, [value]);
+      await pool.query(deleteCar, [car.value]);
 
       res.status(200).send({
         status: 200,

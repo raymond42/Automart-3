@@ -1,6 +1,7 @@
 import moment from 'moment';
 import validatePricePrice from '../../helpers/updatePrice';
 import pool from '../../config/db';
+import Utils from '../../models/utils';
 
 const updatePriceOrder = async (req, res) => {
   try {
@@ -13,10 +14,8 @@ const updatePriceOrder = async (req, res) => {
       return;
     }
 
-    const findOrderId = 'SELECT * FROM orders WHERE id = $1';
-    const value = parseInt(req.params.id, 10);
-    const idFound = await pool.query(findOrderId, [value]);
-    if (!idFound.rows.length) {
+    const idFound = await Utils.util('orders', 'id', parseInt(req.params.id, 10));
+    if (!idFound.thing.rows.length) {
       res.status(404).json({
         status: 404,
         error: 'order not found',
@@ -24,7 +23,7 @@ const updatePriceOrder = async (req, res) => {
       return;
     }
 
-    if (idFound.rows[0].buyer !== req.user.id) {
+    if (idFound.thing.rows[0].buyer !== req.user.id) {
       res.status(403).json({
         status: 403,
         error: 'You can only update your car order',
@@ -32,7 +31,7 @@ const updatePriceOrder = async (req, res) => {
       return;
     }
 
-    if (idFound.rows[0].status !== 'pending') {
+    if (idFound.thing.rows[0].status !== 'pending') {
       res.status(403).json({
         status: 403,
         error: 'sorry, the price of this order can not be changed',
@@ -41,7 +40,7 @@ const updatePriceOrder = async (req, res) => {
     }
 
     const newPrice = 'UPDATE orders SET amount = $1 WHERE id = $2';
-    const values = [req.body.price_offered, value];
+    const values = [req.body.price_offered, idFound.value];
     await pool.query(newPrice, values);
 
     const findCar = 'SELECT * FROM cars WHERE id = $1';
@@ -49,12 +48,12 @@ const updatePriceOrder = async (req, res) => {
     const car = await pool.query(findCar, [carValue]);
 
     const newOrder = {
-      id: idFound.rows[0].id,
-      card_id: idFound.rows[0].card_id,
+      id: idFound.thing.rows[0].id,
+      card_id: idFound.thing.rows[0].card_id,
       created_on: moment().format('LL'),
-      status: idFound.rows[0].status,
+      status: idFound.thing.rows[0].status,
       price: car.rows[0].price,
-      old_price_offered: idFound.rows[0].amount,
+      old_price_offered: idFound.thing.rows[0].amount,
       new_price_offered: req.body.price_offered,
     };
 
