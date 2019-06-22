@@ -1,6 +1,7 @@
 import moment from 'moment';
 import validateOrder from '../../helpers/order';
 import pool from '../../config/db';
+import Utils from '../../models/utils';
 
 const Order = async (req, res) => {
   try {
@@ -19,11 +20,8 @@ const Order = async (req, res) => {
       status: req.body.status || 'pending',
     };
 
-    const findCarId = 'SELECT * FROM cars WHERE id = $1';
-    const carValue = newOrder.car_id;
-    const carId = await pool.query(findCarId, [carValue]);
-
-    if (!carId.rows[0]) {
+    const carId = await Utils.util('cars', 'id', newOrder.car_id);
+    if (!carId.thing.rows[0]) {
       res.status(404).json({
         status: 404,
         error: 'car ordered not found',
@@ -31,7 +29,7 @@ const Order = async (req, res) => {
       return;
     }
 
-    if (carId.rows[0].owner === req.user.id) {
+    if (carId.thing.rows[0].owner === req.user.id) {
       res.status(403).json({
         status: 403,
         error: 'sorry, you can not order your own car',
@@ -54,7 +52,7 @@ const Order = async (req, res) => {
         car_id: results.rows[0].car_id,
         created_on: moment().format('LL'),
         status: results.rows[0].status,
-        price: carId.rows[0].price,
+        price: carId.thing.rows[0].price,
         price_offered: results.rows[0].amount,
       },
     });

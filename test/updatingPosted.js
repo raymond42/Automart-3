@@ -74,10 +74,10 @@ describe('updating the price posted car ad', () => {
       .set('Authorization', token)
       .send(newOrder)
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(500);
         res.should.be.an('object');
-        res.body.should.have.property('status').eql(200);
-        res.body.should.have.property('data');
+        res.body.should.have.property('status').eql(500);
+        res.body.should.have.property('error');
         done();
       });
   });
@@ -124,9 +124,9 @@ describe('updating the price posted car ad', () => {
       .set('Authorization', token)
       .send(newOrder)
       .end((err, res) => {
-        res.should.have.status(404);
+        res.should.have.status(500);
         res.should.be.an('object');
-        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('status').eql(500);
         res.body.should.have.property('error');
         done();
       });
