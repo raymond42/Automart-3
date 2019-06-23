@@ -127,4 +127,20 @@ describe('signin', () => {
         done();
       });
   });
+  it('user should not be able to signin on wrong email', (done) => {
+    const user = {
+      email: 'admin@gmail.com',
+      password: 'Asdfg1',
+    };
+    chai.request(app)
+      .post('/api/v2/auth/signin')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.should.be.an('object');
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
 });

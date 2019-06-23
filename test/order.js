@@ -121,8 +121,7 @@ describe('Purchasing order', () => {
     const token = jwt.sign(buyer, process.env.SECRET_KEY, { expiresIn: '24hrs' });
     const newOrder = {
       buyer: 1,
-      car_id: 10,
-      amount: 'two',
+      car_id: 'two',
     };
     chai.request(app)
       .post('/api/v2/order')
