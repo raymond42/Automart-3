@@ -68,7 +68,7 @@ class Cars {
       const { error } = validateUpdateStatus.validation(req.body);
       if (error) {
         res.status(400).json({
-          status: 400,
+          status: res.statusCode,
           error: error.details[0].message,
         });
         return;
@@ -77,7 +77,7 @@ class Cars {
       const car = await Utils.util('cars', 'id', parseInt(req.params.id, 10));
       if (!car.thing.rows[0]) {
         res.status(404).json({
-          status: 404,
+          status: res.statusCode,
           message: 'car post not found',
           data: [],
         });
@@ -86,7 +86,7 @@ class Cars {
 
       if (car.thing.rows[0].status === req.body.status) {
         res.status(400).json({
-          status: 400,
+          status: res.statusCode,
           error: `The car is already marked as ${car.thing.rows[0].status}`,
         });
         return;
@@ -108,7 +108,7 @@ class Cars {
       };
 
       res.status(200).json({
-        status: 200,
+        status: res.statusCode,
         data: newCar,
       });
     } catch (error) {
@@ -126,18 +126,18 @@ class Cars {
 
       if (!car.thing.rows[0]) {
         res.status(404).json({
-          status: 404,
+          status: res.statusCode,
           message: 'car not found',
         });
       } else {
         res.status(200).json({
-          status: 200,
+          status: res.statusCode,
           data: car.thing.rows,
         });
       }
     } catch (error) {
       res.status(500).json({
-        status: 500,
+        status: res.statusCode,
         error: 'Server error',
       });
     }
@@ -148,7 +148,7 @@ class Cars {
     try {
       if (req.user.email !== 'admin@gmail.com') {
         res.status(403).json({
-          status: 403,
+          status: res.statusCode,
           error: 'Sorry this service is strictly for the right person',
         });
         return;
@@ -158,7 +158,7 @@ class Cars {
       const cars = await pool.query(findCars);
       if (!cars.rows[0]) {
         res.status(404).json({
-          status: 404,
+          status: res.statusCode,
           message: 'no car found',
           data: [],
         });
@@ -166,12 +166,12 @@ class Cars {
       }
 
       res.status(200).json({
-        status: 200,
+        status: res.statusCode,
         data: cars.rows,
       });
     } catch (error) {
       res.status(500).json({
-        status: 500,
+        status: res.statusCode,
         error: 'Server error',
       });
     }
@@ -183,7 +183,7 @@ class Cars {
       const { error } = validateUnsold.validation(req.query);
       if (error) {
         res.status(400).json({
-          status: 400,
+          status: res.statusCode,
           error: error.details[0].message,
         });
         return;
@@ -193,18 +193,18 @@ class Cars {
 
       if (!unsoldCars.thing.rows[0]) {
         res.status(404).json({
-          status: 404,
+          status: res.statusCode,
           message: `No ${unsoldCars.value} cars found`,
         });
         return;
       }
       res.status(200).json({
-        status: 200,
+        status: res.statusCode,
         data: unsoldCars.thing.rows,
       });
     } catch (error) {
       res.status(500).json({
-        status: 500,
+        status: res.statusCode,
         error: 'server error',
       });
     }
@@ -216,7 +216,7 @@ class Cars {
       const { error } = validatingRange.validation(req.query);
       if (error) {
         res.status(400).json({
-          status: 400,
+          status: res.statusCode,
           error: error.details[0].message,
         });
         return;
@@ -226,19 +226,19 @@ class Cars {
 
       if (!range.thing.rows[0]) {
         res.status(404).json({
-          status: 404,
+          status: res.statusCode,
           message: 'can not find car within that range',
           data: [],
         });
       } else {
         res.status(200).json({
-          status: 200,
+          status: res.statusCode,
           data: range.thing.rows,
         });
       }
     } catch (error) {
       res.status(500).json({
-        status: 500,
+        status: res.statusCode,
         error: 'server error',
       });
     }
@@ -250,7 +250,7 @@ class Cars {
       const { error } = validatePostedPrice.validation(req.body);
       if (error) {
         res.status(400).json({
-          status: 400,
+          status: res.statusCode,
           error: error.details[0].message,
         });
         return;
@@ -258,7 +258,7 @@ class Cars {
       const carId = await Utils.util('cars', 'id', parseInt(req.params.id, 10));
       if (!carId.rows.length) {
         res.status(404).json({
-          status: 404,
+          status: res.statusCode,
           error: 'Car post not found',
         });
         return;
@@ -266,7 +266,7 @@ class Cars {
 
       if (carId.rows[0].owner !== req.user.id) {
         res.status(403).json({
-          status: 403,
+          status: res.statusCode,
           error: 'Sorry, you can only update your car post',
         });
         return;
@@ -277,7 +277,7 @@ class Cars {
 
       const { id, owner, state, status, manufacturer, model, body_type } = carId.rows[0];
       res.status(200).json({
-        status: 200,
+        status: res.statusCode,
         data: {
           id,
           owner,
@@ -292,7 +292,7 @@ class Cars {
       });
     } catch (error) {
       res.status(500).json({
-        status: 500,
+        status: res.statusCode,
         error: 'Server error',
       });
     }
@@ -307,19 +307,19 @@ class Cars {
 
       if (!usedUnsoldCars.rows[0]) {
         res.status(404).json({
-          status: 404,
+          status: res.statusCode,
           message: `no ${req.query.state} ${req.query.status} car found`,
           data: [],
         });
         return;
       }
       res.status(200).json({
-        status: 200,
+        status: res.statusCode,
         data: usedUnsoldCars.rows,
       });
     } catch (error) {
       res.status(500).json({
-        status: 500,
+        status: res.statusCode,
         error: 'Server error',
       });
     }
@@ -331,7 +331,7 @@ class Cars {
       const car = await Utils.util('cars', 'id', parseInt(req.params.id, 10));
       if (!car.thing.rows[0]) {
         res.status(404).json({
-          status: 404,
+          status: res.statusCode,
           error: 'Car Ad not found',
         });
         return;
@@ -339,7 +339,7 @@ class Cars {
 
       if (car.thing.rows[0].owner !== req.user.id && req.user.email !== 'admin@gmail.com') {
         res.status(403).json({
-          status: 403,
+          status: res.statusCode,
           error: 'Sorry, you can not delete this car',
         });
         return;
@@ -348,12 +348,12 @@ class Cars {
       await pool.query(deleteCar, [car.value]);
 
       res.status(200).send({
-        status: 200,
+        status: res.statusCode,
         data: 'Car Ad successfully deleted',
       });
     } catch (error) {
       res.status(500).json({
-        status: 500,
+        status: res.statusCode,
         error: 'Server error',
       });
     }
