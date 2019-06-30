@@ -8,6 +8,7 @@ import validatingRange from '../../helpers/priceRange';
 import validatePostedPrice from '../../helpers/postedPrice';
 import validateUnsold from '../../helpers/unsold';
 import Utils from '../../models/utils';
+import validateFlag from '../../helpers/flag';
 
 
 class Cars {
@@ -350,6 +351,43 @@ class Cars {
       res.status(200).send({
         status: res.statusCode,
         data: 'Car Ad successfully deleted',
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: res.statusCode,
+        error: 'Server error',
+      });
+    }
+  }
+
+  // flag a car
+  static async flagCar(req, res) {
+    try {
+      const { error } = validateFlag.validation(req.body);
+      if (error) {
+        res.status(400).json({
+          status: res.statusCode,
+          error: error.details[0].message,
+        });
+        return;
+      }
+      const car = await Utils.util('cars', 'id', req.body.car_id);
+      if (!car.thing.rows[0]) {
+        res.status(404).json({
+          status: res.statusCode,
+          message: 'Car not found',
+        });
+        return;
+      }
+      const { car_id, reason, description } = req.body;
+      const created_on = moment().format('LL');
+      const insertFlag = 'INSERT INTO flags(car_id, created_on, reason, description) VALUES($1, $2, $3, $4) RETURNING *';
+      const results = await pool.query(insertFlag, [
+        car_id, created_on, reason, description,
+      ]);
+      res.status(200).json({
+        status: res.statusCode,
+        data: results.rows,
       });
     } catch (error) {
       res.status(500).json({

@@ -46,4 +46,7 @@ router.get('/cars/getAll', auth, Cars.getAllCars);
 // get all used or new unsold cars
 router.get('/all', auth, Cars.getUnsoldState);
 
+// flag a car
+router.post('/flag', auth, Cars.flagCar);
+
 export default router;
