@@ -30,6 +30,14 @@ const createTables = `
       car_id INT NOT NULL,
       amount INT NOT NULL,
       status VARCHAR(20) NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS flags(
+      id SERIAL PRIMARY KEY,
+      car_id INT NOT NULL,
+      created_on TIMESTAMP,
+      reason VARCHAR(100) NOT NULL,
+      description VARCHAR(100) NOT NULL
     )`;
 
 pool.query(createTables).then(() => {

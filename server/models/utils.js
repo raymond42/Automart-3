@@ -14,13 +14,6 @@ class Utils {
     const thing = await pool.query(find, value);
     return { thing, value };
   }
-
-  // static async responses(statusCode, errorMessage) {
-  //   res.status(statusCode).json({
-  //     status: statusCode,
-  //     error: errorMessage,
-  //   });
-  // }
 }
 
 export default Utils;
